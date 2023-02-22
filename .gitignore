@@ -1,22 +1,43 @@
-**App-API/.vs/
-**App-API/bin/
-**App-API/obj/
+**App-API/AddonAPI/**/**/.vs/
+**App-API/AddonAPI/**/**/bin/
+**App-API/AddonAPI/**/**/obj/
+
+**App-API/AddonAPI/**/**/**/.vs/
+**App-API/AddonAPI/**/**/**/bin/
+**App-API/AddonAPI/**/**/**/obj/
+
+**App-API/AddonAPI/**/.vs/
+**App-API/AddonAPI/**/bin/
+**App-API/AddonAPI/**/obj/
+
+**App-API/AddonAPI/01.Common/Addon.Caching/.vs/
+**App-API/AddonAPI/01.Common/Addon.Caching/bin/
+**App-API/AddonAPI/01.Common/Addon.Caching/obj/
+
+**App-API/AddonAPI/01.Common/Addon.Core/.vs/
+**App-API/AddonAPI/01.Common/Addon.Core/bin/
+**App-API/AddonAPI/01.Common/Addon.Core/obj/
+
+**App-API/AddonAPI/01.Common/Addon.DataProcess/.vs/
+**App-API/AddonAPI/01.Common/Addon.DataProcess/bin/
+**App-API/AddonAPI/01.Common/Addon.DataProcess/obj/
+
+**App-API/AddonAPI/01.Common/Addon.Model/.vs/
+**App-API/AddonAPI/01.Common/Addon.Model/bin/
+**App-API/AddonAPI/01.Common/Addon.Model/obj/
 
 
-**App-API/AddonAPI/.vs/
-**App-API/AddonAPI/bin/
-**App-API/AddonAPI/obj/
+**App-API/AddonAPI/02.Services/Addon.BaseCategory/.vs/
+**App-API/AddonAPI/02.Services/Addon.BaseCategory/bin/
+**App-API/AddonAPI/02.Services/Addon.BaseCategory/obj/
 
+**App-API/AddonAPI/02.Services/Addon.BaseReport/.vs/
+**App-API/AddonAPI/02.Services/Addon.BaseReport/bin/
+**App-API/AddonAPI/02.Services/Addon.BaseReport/obj/
 
-
-**App-API/Library/**/obj/
-**App-API/Library/**/bin/
-
-
-
-**App-API/Library/{%FolderName%}/**/obj/
-**App-API/Library/{%FolderName%}/**/bin/
-
+**App-API/AddonAPI/03.API/Addon.API/.vs/
+**App-API/AddonAPI/03.API/Addon.API/bin/
+**App-API/AddonAPI/03.API/Addon.API/obj/
 
 **App-API/**/.vs
 **App-API/**/obj/
