@@ -24,66 +24,26 @@ export default function CustomiseTheme() {
     const [themeLocal, setThemeLocal] = useState()
     const [themeClickCheck, setThemeClickCheck] = useState(false)
 
-    function themeRefActive(e) {
-        if (e == "light") {
-            themeRef[0].classList.add("active")
-            themeRef[1].classList.remove("active")
-        }
-
-        if (e == "dark") {
-            themeRef[1].classList.add("active")
-            themeRef[0].classList.remove("active")
-        }
-    }
 
     useEffect(() => {
         if (themeClickCheck == false) {
-            if (location.location.search == "?theme=dark") {
-                localStorage.setItem("theme", "dark")
-                setThemeLocal("dark")
-                themeRefActive("dark")
-            } else if (location.location.search == "?theme=light") {
+            if (location.location.search == "?theme=light") {
                 localStorage.setItem("theme", "light")
                 setThemeLocal("light")
-                themeRefActive("light")
             }
         }
 
         if (localStorage) {
             setThemeLocal(localStorage.getItem("theme"))
         }
-
-        if (themeLocal) {
-            themeRefActive(themeLocal)
-        } else {
-            themeRefActive(customise.theme)
-        }
-    }, [themeRefActive])
+    }, [])
 
     function themeClick(index) {
         setThemeClickCheck(true)
-
-        if (index == 0) {
-            document.querySelector("body").classList.replace("dark", "light")
-            localStorage.setItem("theme", "light")
-            setThemeLocal("light")
-
-            dispatch(theme("light"))
-        } else {
-            document.querySelector("body").classList.replace("light", "dark")
-            localStorage.setItem("theme", "dark")
-            setThemeLocal("dark")
-
-            dispatch(theme("dark"))
-        }
-
-        for (let i = 0; i < themeRef.length; i++) {
-            if (index == i) {
-                themeRef[i].classList.add("active")
-            } else {
-                themeRef[i].classList.remove("active")
-            }
-        }
+        document.querySelector("body").classList.replace("dark", "light")
+        localStorage.setItem("theme", "light")
+        setThemeLocal("light")
+        dispatch(theme("light"))
     }
 
     // Direction Active
@@ -94,34 +54,12 @@ export default function CustomiseTheme() {
         if (location.location.search == "?direction=ltr") {
             directionRef[0].classList.add("active")
             directionRef[1].classList.remove("active")
-        } else if (location.location.search == "?direction=rtl") {
-            directionRef[1].classList.add("active")
-            directionRef[0].classList.remove("active")
-        } else if (customise.direction == "ltr") {
-            directionRef[0].classList.add("active")
-            directionRef[1].classList.remove("active")
-        } else if (customise.direction == "rtl") {
-            directionRef[1].classList.add("active")
-            directionRef[0].classList.remove("active")
-        }
+        } 
     }, [])
 
     function directionClick(index) {
-        if (index == 0) {
-            dispatch(direction("ltr"))
-            document.querySelector("html").setAttribute("dir", "ltr");
-        } else {
-            dispatch(direction("rtl"))
-            document.querySelector("html").setAttribute("dir", "rtl");
-        }
-
-        for (let i = 0; i < directionRef.length; i++) {
-            if (index == i) {
-                directionRef[i].classList.add("active")
-            } else {
-                directionRef[i].classList.remove("active")
-            }
-        }
+        dispatch(direction("ltr"))
+        document.querySelector("html").setAttribute("dir", "ltr");
     }
 
     // Width Active
@@ -129,39 +67,13 @@ export default function CustomiseTheme() {
     widthRef = [];
 
     useEffect(() => {
-        if (location.location.search == "?width=full") {
-            widthRef[0].classList.add("active")
-            widthRef[1].classList.remove("active")
-
-            dispatch(contentWidth("full"))
-        } else if (location.location.search == "?width=boxed") {
-            widthRef[1].classList.add("active")
-            widthRef[0].classList.remove("active")
-
-            dispatch(contentWidth("boxed"))
-        } else if (customise.contentWidth == "full") {
-            widthRef[0].classList.add("active")
-            widthRef[1].classList.remove("active")
-        } else if (customise.contentWidth == "boxed") {
-            widthRef[1].classList.add("active")
-            widthRef[0].classList.remove("active")
-        }
+        widthRef[0].classList.add("active")
+        widthRef[1].classList.remove("active")
+        dispatch(contentWidth("full"))
     }, [])
 
     function widthClick(index) {
-        if (index == 0) {
-            dispatch(contentWidth("full"))
-        } else {
-            dispatch(contentWidth("boxed"))
-        }
-
-        for (let i = 0; i < widthRef.length; i++) {
-            if (index == i) {
-                widthRef[i].classList.add("active")
-            } else {
-                widthRef[i].classList.remove("active")
-            }
-        }
+        dispatch(contentWidth("full"))
     }
 
     // Navigation Active
@@ -178,34 +90,6 @@ export default function CustomiseTheme() {
     const [child2Svg, setChild2Svg] = useState(0)
 
     useEffect(() => {
-        if (location.location.search == "?vertical=collapse") {
-            dispatch(layoutChange("VerticalLayout"))
-
-            navigationRef[0].classList.add("active")
-        }
-
-        if (location.location.search == "?vertical=mini") {
-            dispatch(layoutChange("VerticalLayout"))
-            dispatch(sidebarCollapseButton(false))
-            dispatch(sidebarCollapsed(true))
-
-            setChild1Svg(0);
-
-            navigationChild1Ref[0].classList.remove("active")
-            navigationChild1Ref[0].classList.remove("active-check")
-            navigationChild1Ref[1].classList.add("active")
-            navigationChild1Ref[1].classList.add("active-check")
-        }
-
-        if (location.location.search == "?vertical=menu") {
-            dispatch(layoutChange("VerticalLayout"))
-            dispatch(sidebarCollapseButton(false))
-
-            navigationRef[0].classList.add("active")
-        }
-
-        //--
-
         if (location.location.search == "?horizontal=menu") {
             dispatch(layoutChange("HorizontalLayout"))
 
@@ -238,44 +122,6 @@ export default function CustomiseTheme() {
             navigationChild1Ref[0].classList.remove("active")
             navigationChild2Ref[2].classList.add("active")
         }
-
-        //--
-
-        if (location.location.search == "") {
-            if (customise.layout == "VerticalLayout") {
-                navigationRef[0].classList.add("active")
-                navigationRef[1].classList.remove("active")
-
-                for (let i = 0; i < navigationChild2Ref.length; i++) {
-                    navigationChild2Ref[i].classList.remove("active")
-                }
-
-                navigationChild1Ref[0].classList.add("active")
-
-                //--
-
-                if (customise.sidebarCollapsed == false) {
-                    setChild1Svg(0);
-
-                    navigationChild1Ref[0].classList.add("active")
-                    navigationChild1Ref[1].classList.remove("active")
-                }
-
-                if (customise.sidebarCollapsed == true) {
-                    setChild1Svg(1);
-
-                    navigationChild1Ref[1].classList.add("active")
-                    navigationChild1Ref[0].classList.remove("active")
-                }
-
-                if (customise.sidebarCollapseButton == false) {
-                    setChild1Svg(2);
-
-                    navigationChild1Ref[0].classList.remove("active")
-                    navigationChild1Ref[1].classList.remove("active")
-                    navigationChild1Ref[2].classList.add("active")
-                }
-            }
 
             if (customise.layout == "HorizontalLayout") {
                 navigationRef[1].classList.add("active")
@@ -311,7 +157,6 @@ export default function CustomiseTheme() {
                     navigationChild2Ref[2].classList.remove("active")
                 }
             }
-        }
     }, [])
 
     function navigationClick(index) {
@@ -322,23 +167,6 @@ export default function CustomiseTheme() {
                 navigationRef[i].classList.remove("active")
             }
         }
-
-        if (index == 0) {
-            dispatch(layoutChange("VerticalLayout"))
-
-            for (let i = 0; i < navigationChild2Ref.length; i++) {
-                navigationChild2Ref[i].classList.remove("active")
-            }
-
-            for (let i = 0; i < navigationChild1Ref.length; i++) {
-                if (navigationChild1Ref[i].classList.contains('active-check')) {
-                    navigationChild1Ref[i].classList.add("active")
-                } else {
-                    navigationChild1Ref[i].classList.remove("active")
-                }
-            }
-        }
-
         if (index == 1) {
             dispatch(layoutChange("HorizontalLayout"))
 
@@ -392,9 +220,7 @@ export default function CustomiseTheme() {
     function navigationChild2Click(index) {
         navigationRef[1].classList.add("active")
         navigationRef[0].classList.remove("active")
-
         setChild2Svg(index);
-
         dispatch(layoutChange("HorizontalLayout"))
 
         if (index == 0) {

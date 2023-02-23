@@ -61,15 +61,9 @@ import ProfitFeatureCard from "./profitFeatureCard";
 import OrdersFeatureCard from "./ordersFeatureCard";
 import CustomerFeatureCard from "./customerFeatureCard";
 import ECommerceProductCardItem from "../../../dashboard/ecommerce/eCommerceProductCardItem";
-import UpgradePlanCardOneBg from "./upgradePlanCardOneBg";
-import BestTeamCard from "../statistics/bestTeamCard";
-import EarningsCard from "./earningsCard";
-import ExpensesCard from "../../../dashboard/analytics/expensesCard";
 import BidCardNFT from "../../../dashboard/nft/bidCard";
 import OwnNFT from "../../../dashboard/nft/ownNFT";
 import NFTProductCard from "../../../dashboard/nft/nftProductCard";
-import RecentActivityNFT from "../../../dashboard/nft/recentActivity";
-import DownloadCard from "./downloadCard";
 import HotBidItem from "../../../dashboard/nft/hotBidItem";
 import CreditCard from "./creditCard";
 import SmallCardItem from "./smallCardItem";
@@ -349,18 +343,6 @@ export default function Advance() {
           <Col flex="1" className="hp-overflow-hidden">
             <Row gutter={[32, 32]}>
               <Col span={24}>
-                <UpgradePlanCardOneBg />
-              </Col>
-
-              <Col span={24}>
-                <BestTeamCard />
-              </Col>
-
-              <Col span={24}>
-                <EarningsCard />
-              </Col>
-
-              <Col span={24}>
                 <OwnNFT />
               </Col>
 
@@ -370,22 +352,6 @@ export default function Advance() {
 
               <Col span={24}>
                 <BidCardNFT />
-              </Col>
-            </Row>
-          </Col>
-
-          <Col className="hp-analytics-col-2">
-            <Row gutter={[32, 32]}>
-              <Col span={24}>
-                <ExpensesCard />
-              </Col>
-
-              <Col span={24}>
-                <RecentActivityNFT />
-              </Col>
-
-              <Col span={24}>
-                <DownloadCard />
               </Col>
             </Row>
           </Col>

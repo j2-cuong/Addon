@@ -6,7 +6,6 @@ import PageHeaderNFT from "./pageHeaderNFT";
 import BidCardNFT from "./bidCard";
 import OwnNFT from "./ownNFT";
 import TotalBalanceNFT from "./totalBalance";
-import RecentActivityNFT from "./recentActivity";
 import SummaryNFT from "./summary";
 import HotBidNFT from "./hotBid";
 
@@ -29,10 +28,6 @@ export default function NFT() {
                 <OwnNFT />
               </Col>
             </Row>
-          </Col>
-
-          <Col lg={7} span={24}>
-            <RecentActivityNFT />
           </Col>
         </Row>
 

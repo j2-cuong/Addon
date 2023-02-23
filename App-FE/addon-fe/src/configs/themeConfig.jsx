@@ -4,7 +4,7 @@ const themeConfig = {
     contentWidth: "full", // full - boxed
     sidebarCollapsed: false,
     sidebarCollapseButton: true,
-    layout: "VerticalLayout", // VerticalLayout - HorizontalLayout
+    layout: "HorizontalLayout", // VerticalLayout - HorizontalLayout
     navigationFull: false,
     navigationBg: false,
     direction: "ltr", // ltr - rtl
