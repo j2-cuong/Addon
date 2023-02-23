@@ -2,13 +2,13 @@ Technology
 
 	FE :
 		- React version 16.8.x
-		- Antd
+		- Yoda template
 		
 	BE : 
 		- Built on .NET 6.0
-		- Uses Entity Framework Core as DB Abstraction
-		- JWT & Azure AD Authentication
+		- Uses Entity Framework
+		- JWT Authentication
 		- SignalR Notifications
 		
 	DB :
-		- SQL Server
+		- SQL Server 2016 SP2

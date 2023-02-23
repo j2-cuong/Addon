@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Addon.Core\Addon.Core.csproj" />
+  </ItemGroup>
+
 </Project>
