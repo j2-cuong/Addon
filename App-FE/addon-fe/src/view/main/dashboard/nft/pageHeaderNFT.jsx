@@ -13,13 +13,6 @@ export default function PageHeaderNFT() {
             <Avatar size={85} src={avatarImage} style={{ background: "none" }} />
           </Col>
 
-          <Col className="hp-ml-14">
-            <h2 className="hp-mb-4">Welcome back, Edward 👋</h2>
-
-            <p className="hp-p1-body hp-mb-0">
-              Discover limited-edition digital artwork Create, sell and collect your now!
-            </p>
-          </Col>
         </Row>
       </Col>
 

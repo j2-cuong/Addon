@@ -1,5 +1,7 @@
 {
-  "name": "yoda-admin-react",
+  "name": "addon-apps",
+  "author": "CuongNH",
+  "version": "1.0.0.0",
   "private": true,
   "dependencies": {
     "@algolia/autocomplete-js": "^1.3.0",

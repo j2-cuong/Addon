@@ -19,14 +19,6 @@ export default function ECommerce() {
     <Row gutter={[32, 0]}>
       <Col span={24}>
         <Row align="middle" justify="space-between">
-          <Col md={12} span={24}>
-            <h3>Welcome back, Edward 👋</h3>
-
-            <p className="hp-p1-body hp-mb-0">
-              Your current status and analytics are here
-            </p>
-          </Col>
-
           <Col className="hp-mt-sm-24">
             <Select
               style={{ width: "100%" }}
