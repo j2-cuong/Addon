@@ -6,7 +6,6 @@ import { Layout, Row, Col } from "antd";
 
 import Sidebar from "./components/menu/Sidebar";
 import MenuHeader from "./components/header";
-import MenuFooter from "./components/footer";
 import CustomiseTheme from "./components/customise";
 import ScrollTop from "./components/scroll-to-top";
 
@@ -46,12 +45,8 @@ export default function VerticalLayout(props) {
                         }
                     </Row>
                 </Content>
-
-                <MenuFooter />
             </Layout>
-
             <CustomiseTheme />
-
             <ScrollTop />
         </Layout>
     );

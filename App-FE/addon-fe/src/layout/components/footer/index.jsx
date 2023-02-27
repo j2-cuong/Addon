@@ -4,12 +4,17 @@ const { Footer } = Layout;
 import themeConfig from '../../../configs/themeConfig.jsx';
 
 export default function MenuFooter() {
+  
+  const today = new Date();
+  const year = today.getFullYear();
+
+
   return (
     <Footer className="hp-bg-color-black-10 hp-bg-color-dark-100">
       <Row align="middle" justify="space-between">
         <Col md={12} span={24}>
           <p className="hp-badge-text hp-mb-0 hp-text-color-dark-30">
-            COPYRIGHT ©2021 Hypeople, All rights Reserved
+            COPYRIGHT ©{year}, Phát triển bở MetaTrip
           </p>
         </Col>
 
@@ -19,7 +24,7 @@ export default function MenuFooter() {
             target="_blank"
             className="hp-badge-text hp-text-color-dark-30"
           >
-            🥁 Version: {themeConfig.version}
+            Version: {themeConfig.version}
           </a>
         </Col>
       </Row>

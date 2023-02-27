@@ -240,7 +240,7 @@ const PagesRoutes = [
 
   // MAIN
   {
-    path: "/main/dashboard/analytics",
+    path: "/index",
     component: lazy(() => import("../../view/main/dashboard/analytics")),
     layout: "VerticalLayout",
   },

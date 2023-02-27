@@ -5,7 +5,6 @@ import { RiCloseFill } from "react-icons/ri";
 
 import MenuLogo from "../logo";
 import MenuItem from "../item";
-import MenuFooter from "../footer";
 
 export default function MenuMobile(props) {
     const { onClose, visible } = props;
@@ -29,7 +28,6 @@ export default function MenuMobile(props) {
         >
             <MenuItem onClose={onClose} />
 
-            <MenuFooter onClose={onClose} collapsed={false} />
         </Drawer>
     );
 };
