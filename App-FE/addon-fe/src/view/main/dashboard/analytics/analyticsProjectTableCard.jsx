@@ -123,7 +123,7 @@ export default function AnalyticsProjectTableCard() {
   ];
 
   return (
-    <Card className="hp-border-color-black-40 hp-mb-32 hp-analytics-project-table-card hp-project-table-card">
+    <Card className="hp-border-color-black-40 hp-mb-10 hp-analytics-project-table-card hp-project-table-card">
       <Row>
         <Col span={24}>
           <Row justify="space-between">
