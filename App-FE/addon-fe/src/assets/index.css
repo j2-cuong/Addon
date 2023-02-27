@@ -1,0 +1,18 @@
+
+
+a.hp-header-logo.hp-d-flex.hp-align-items-end.just.justify-content-center {
+    justify-content: center !important;
+    align-items: center !important;
+    text-align:  center !important;
+}
+
+img.hp-logo {
+    height: auto !important;
+}
+
+@media screen and (min-width: 1200px){
+    img.hp-logo {
+        height: auto !important;
+        width: 65px !important;
+    }
+}

@@ -9,7 +9,6 @@ import { Search } from "react-iconly";
 import HeaderSearch from './HeaderSearch';
 import HeaderUser from "./HeaderUser";
 import HeaderNotifications from "./HeaderNotifications";
-import HeaderCart from "./HeaderCart";
 import HeaderText from "./HeaderText";
 
 const { Header } = Layout;
@@ -110,7 +109,6 @@ export default function MenuHeader(props) {
               )}
             </Col>
 
-            <HeaderCart />
 
             <HeaderNotifications />
 

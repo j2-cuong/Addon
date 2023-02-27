@@ -8,15 +8,6 @@
         "url": "/main/dashboard/analytics"
     },
     {
-        "title": "Dashboard Ecommerce",
-        "url": "/main/dashboard/ecommerce"
-    },
-    {
-        "title": "Dashboard NFT",
-        "url": "/main/dashboard/nft"
-    },
-
-    {
         "title": "Advance Cards",
         "url": "/main/widgets/cards/advance"
     },

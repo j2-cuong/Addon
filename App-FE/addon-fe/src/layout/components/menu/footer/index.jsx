@@ -28,7 +28,7 @@ export default function MenuFooter(props) {
             <div>
               <span className="hp-d-block hp-text-color-black-100 hp-text-color-dark-0 hp-p1-body">
                 Jane Doe
-             </span>
+            </span>
 
               <Link
                 to="/pages/profile/personel-information"
@@ -36,7 +36,7 @@ export default function MenuFooter(props) {
                 onClick={props.onClose}
               >
                 View Profile
-             </Link>
+            </Link>
             </div>
           </Row>
         </Col>

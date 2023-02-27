@@ -8,7 +8,6 @@ import SubsColumnCardVertical from "../../widgets/cards/statistics/subsColumnCar
 import CustomerSupportCardVertical from "../../widgets/cards/statistics/customerSupportCardVertical";
 import AnalyticsProjectTableCard from "./analyticsProjectTableCard";
 import AnalyticsVisitersLineCard from "./analyticsVisitersLineCard";
-import AnalyticsRevenueRadarCard from "./analyticsRevenueRadarCard";
 
 export default function Analytics() {
   return (

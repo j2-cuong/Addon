@@ -6,10 +6,8 @@ import { Layout, Button, Row, Col } from "antd";
 import { RiCloseLine, RiMenuFill } from "react-icons/ri";
 import { Search } from "react-iconly";
 
-import HeaderSearch from './HeaderSearch';
 import HeaderUser from "./HeaderUser";
 import HeaderNotifications from "./HeaderNotifications";
-import HeaderCart from "./HeaderCart";
 import MenuLogo from "../menu/logo";
 import MenuHorizontal from "../menu/item/MenuHorizontal";
 import MenuMobile from "../menu/mobile";
@@ -111,23 +109,13 @@ export default function HeaderHorizontal(props) {
           style={{ display: !searchHeader ? 'none' : 'block' }}
           className={`hp-pl-md-0 hp-pr-md-0 hp-pl-32 hp-pr-16 hp-header-search ${searchActive && "hp-header-search-active"}`}
         >
-          <HeaderSearch inputFocusProp={inputFocusProp} setSearchHeader={setSearchHeader} />
         </Col>
 
         <Col>
           <Row align="middle">
             <Col className="hp-d-flex-center hp-mr-4">
               {!searchHeader ? (
-                <Button
-                  type="text"
-                  icon={
-                    <Search
-                      set="curved"
-                      className="hp-text-color-black-60"
-                    />
-                  }
-                  onClick={() => searchClick()}
-                />
+               <></>
               ) : (
                 <Button
                   type="text"
@@ -141,8 +129,6 @@ export default function HeaderHorizontal(props) {
                 />
               )}
             </Col>
-
-            <HeaderCart />
 
             <HeaderNotifications />
 
