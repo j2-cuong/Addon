@@ -9,6 +9,13 @@ a.hp-header-logo.hp-d-flex.hp-align-items-end.just.justify-content-center {
 img.hp-logo {
     height: auto !important;
 }
+header.ant-layout-header.hp-header-horizontal {
+    margin: 12px 32px 32px !important;
+}
+
+footer.ant-layout-footer.hp-bg-color-black-10.hp-bg-color-dark-100 {
+    padding: 10px 32px !important;
+}
 
 @media screen and (min-width: 1200px){
     img.hp-logo {

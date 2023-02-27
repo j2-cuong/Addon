@@ -7,19 +7,14 @@ import ActiveUserCardVertical from "../../widgets/cards/statistics/activeUserCar
 import SubsColumnCardVertical from "../../widgets/cards/statistics/subsColumnCardVertical";
 import CustomerSupportCardVertical from "../../widgets/cards/statistics/customerSupportCardVertical";
 import AnalyticsProjectTableCard from "./analyticsProjectTableCard";
-import AnalyticsVisitersLineCard from "./analyticsVisitersLineCard";
 
 export default function Analytics() {
   return (
     <Row gutter={[32, 0]}>
-      <Col span={24} className="hp-my-32">
+      <Col span={24} className="hp-my-10">
         <Row gutter={[32, 0]}>
           <Col flex="1" className="hp-overflow-hidden">
             <Row gutter={[32, 32]}>
-              <Col span={24}>
-                <AnalyticsVisitersLineCard />
-              </Col>
-
               <Col md={6} span={12} className="hp-overflow-hidden">
                 <OrderColumnCardVertical />
               </Col>
