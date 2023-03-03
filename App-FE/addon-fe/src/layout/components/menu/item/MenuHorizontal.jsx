@@ -1,8 +1,7 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
 
-import { useSelector, useDispatch } from 'react-redux';
-import { loadCurrentItem } from "../../../../redux/ecommerce/ecommerceActions";
+import { useSelector } from 'react-redux';
 
 import {
     Menu,
@@ -18,9 +17,7 @@ export default function MenuHorizontal(props) {
     const { onClose } = props;
 
     // Redux
-    const products = useSelector(state => state.ecommerce.products)
     const customise = useSelector(state => state.customise)
-    const dispatch = useDispatch()
 
     // Location
     const location = useLocation();
@@ -47,11 +44,7 @@ export default function MenuHorizontal(props) {
                         >
                             <Col>
                                 {
-                                    item.header.toLowerCase() == "apps" ? (
-                                        "Applications"
-                                    ) : (
-                                        item.header
-                                    )
+                                    item.header
                                 }
                             </Col>
 
@@ -116,22 +109,7 @@ export default function MenuHorizontal(props) {
                                                     }
                                                     onClick={onClose}
                                                 >
-                                                    {
-                                                        childItem.id === 'product-detail' ? (
-                                                            <Link
-                                                                to={childItem.navLink}
-                                                                onClick={() => dispatch(loadCurrentItem(products[0]))}
-                                                            >
-                                                                {childItem.title}
-                                                            </Link>
-                                                        ) : (
-                                                            (childItem.id.split("-")[0]) === 'email' ? (
-                                                                <a href={childItem.navLink} target="_blank">{childItem.title}</a>
-                                                            ) : (
-                                                                <Link to={childItem.navLink}>{childItem.title}</Link>
-                                                            )
-                                                        )
-                                                    }
+                                                    <Link to={childItem.navLink}>{childItem.title}</Link>
                                                 </Menu.Item>
                                             )
                                         ))

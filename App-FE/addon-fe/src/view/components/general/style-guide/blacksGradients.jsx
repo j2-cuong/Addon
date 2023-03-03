@@ -6,7 +6,7 @@ export default function BlackGradients() {
   return (
     <Card className="hp-border-color-black-40">
       <Row className="hp-mb-16">
-        <h5 className="hp-w-100 hp-mb-8">Blacks & Gradients</h5>
+        <h4 className="hp-w-100">Blacks & Gradients</h4>
 
         <p className="hp-p1-body">
           Black tags can be use with class
@@ -16,122 +16,114 @@ export default function BlackGradients() {
         </p>
       </Row>
 
-      <Row justify="space-between" className="hp-border-radius hp-overflow-hidden hp-border-color-black-40 hp-mb-24">
-        <Col flex="1 0 0">
-          <Tooltip title="Dark-Bg #111314">
-            <div className="hp-w-100 hp-bg-color-black-bg hp-color-wrapper hp-border-radius-l hp-mb-8 hp-border-left-1 hp-border-top-1 hp-border-bottom-1 hp-border-color-dark-80"></div>
-          </Tooltip>
-          <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0"> Dark-Bg</p>
-        </Col>
+      <Row justify="space-between" className="hp-mb-48">
+        <Col>
+          <Row className="hp-border-radius hp-overflow-hidden hp-border-color-black-40">
+            <Col>
+              <Tooltip title="Dark-Bg #111314">
+                <Col className="hp-bg-color-black-bg hp-color-wrapper hp-border-radius-l hp-mb-8"></Col>
+              </Tooltip>
+              <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0"> Dark-Bg</p>
+            </Col>
 
-        <Col flex="1 0 0">
-          <Tooltip title="B-100 #2D3436">
-            <div className="hp-w-100 hp-bg-color-black-100 hp-color-wrapper hp-mb-8 hp-border-left-1 hp-border-top-1 hp-border-bottom-1 hp-border-color-dark-80"></div>
-          </Tooltip>
-          <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0"> B-100</p>
-        </Col>
+            <Col>
+              <Tooltip title="B-100 #2D3436">
+                <Col className="hp-bg-color-black-100 hp-color-wrapper hp-mb-8"></Col>
+              </Tooltip>
+              <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0"> B-100</p>
+            </Col>
 
-        <Col flex="1 0 0">
-          <Tooltip title="B-80 #636E72">
-            <div className="hp-w-100 hp-bg-color-black-80 hp-color-wrapper hp-mb-8 hp-border-left-1 hp-border-top-1 hp-border-bottom-1 hp-border-color-dark-80"></div>
-          </Tooltip>
-          <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0"> B-80</p>
-        </Col>
+            <Col>
+              <Tooltip title="B-80 #636E72">
+                <Col className="hp-bg-color-black-80 hp-color-wrapper hp-mb-8"></Col>
+              </Tooltip>
+              <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0"> B-80</p>
+            </Col>
 
-        <Col flex="1 0 0">
-          <Tooltip title="B-60 #B2BEC3">
-            <div className="hp-w-100 hp-bg-color-black-60 hp-color-wrapper hp-mb-8 hp-border-left-1 hp-border-top-1 hp-border-bottom-1 hp-border-color-dark-80"></div>
-          </Tooltip>
-          <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0"> B-60</p>
-        </Col>
+            <Col>
+              <Tooltip title="B-60 #B2BEC3">
+                <Col className="hp-bg-color-black-60 hp-color-wrapper hp-mb-8"></Col>
+              </Tooltip>
+              <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0"> B-60</p>
+            </Col>
 
-        <Col flex="1 0 0">
-          <Tooltip title="B-40 #DFE6E9">
-            <div className="hp-w-100 hp-bg-color-black-40 hp-color-wrapper hp-mb-8 hp-border-left-1 hp-border-top-1 hp-border-bottom-1 hp-border-color-dark-80"></div>
-          </Tooltip>
-          <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0"> B-40</p>
-        </Col>
+            <Col>
+              <Tooltip title="B-40 #DFE6E9">
+                <Col className="hp-bg-color-black-40 hp-color-wrapper hp-mb-8"></Col>
+              </Tooltip>
+              <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0"> B-40</p>
+            </Col>
 
-        <Col flex="1 0 0">
-          <Tooltip title="B-20 #F0F3F5">
-            <div className="hp-w-100 hp-bg-color-black-20 hp-color-wrapper hp-mb-8 hp-border-left-1 hp-border-top-1 hp-border-bottom-1 hp-border-color-dark-80"></div>
-          </Tooltip>
-          <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0"> B-20</p>
-        </Col>
+            <Col>
+              <Tooltip title="B-20 #F0F3F5">
+                <Col className="hp-bg-color-black-20 hp-color-wrapper hp-mb-8"></Col>
+              </Tooltip>
+              <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0"> B-20</p>
+            </Col>
 
-        <Col flex="1 0 0">
-          <Tooltip title="B-10 #F7FAFC">
-            <div className="hp-w-100 hp-bg-color-black-10 hp-color-wrapper hp-mb-8 hp-border-left-1 hp-border-top-1 hp-border-bottom-1 hp-border-color-dark-80"></div>
-          </Tooltip>
-          <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0"> B-10</p>
-        </Col>
+            <Col>
+              <Tooltip title="B-10 #F7FAFC">
+                <Col className="hp-bg-color-black-10 hp-color-wrapper hp-mb-8"></Col>
+              </Tooltip>
+              <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0"> B-10</p>
+            </Col>
 
-        <Col flex="1 0 0">
-          <Tooltip title="B-0 #FFFFFF">
-            <div className="hp-w-100 hp-bg-color-black-10 hp-color-wrapper hp-border-radius-r hp-mb-8 hp-border-1 hp-border-color-dark-80"></div>
-          </Tooltip>
-          <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0"> B-0</p>
+            <Col>
+              <Tooltip title="B-0 #FFFFFF">
+                <Col className="hp-bg-color-black-10 hp-color-wrapper hp-border-radius-r hp-mb-8"></Col>
+              </Tooltip>
+              <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0"> B-0</p>
+            </Col>
+          </Row>
         </Col>
       </Row>
 
       <Row gutter={24}>
-        <Col lg={4} span={12}>
-          <Tooltip title="#0010f7 - #1be7ff">
-            <div className="hp-w-100 hp-bg-primary-gradient hp-color-wrapper hp-border-radius hp-mb-8"></div>
-          </Tooltip>
-
+        <Col>
+          <Col className="hp-bg-primary-gradient hp-color-wrapper hp-border-radius hp-mb-8"></Col>
           <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0">
-            Primary Gradient
+            Primary <br />
+            Gradient
           </p>
         </Col>
 
-        <Col lg={4} span={12}>
-          <Tooltip title="#a210ba - #ff00c7">
-            <div className="hp-w-100 hp-bg-secondary-gradient hp-color-wrapper hp-border-radius hp-mb-8"></div>
-          </Tooltip>
-
+        <Col>
+          <Col className="hp-bg-secondary-gradient hp-color-wrapper hp-border-radius hp-mb-8"></Col>
           <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0">
-            Secondary Gradient
+            Secondary <br />
+            Gradient
           </p>
         </Col>
 
-        <Col lg={4} span={12}>
-          <Tooltip title="#ff0022 - #ff5c00">
-            <div className="hp-w-100 hp-bg-danger-gradient hp-color-wrapper hp-border-radius hp-mb-8"></div>
-          </Tooltip>
-
+        <Col>
+          <Col className="hp-bg-danger-gradient hp-color-wrapper hp-border-radius hp-mb-8"></Col>
           <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0">
-            Danger Gradient
+            Danger <br />
+            Gradient
           </p>
         </Col>
 
-        <Col lg={4} span={12}>
-          <Tooltip title="#1be7ff - #c2f4ff">
-            <div className="hp-w-100 hp-bg-info-gradient hp-color-wrapper hp-border-radius hp-mb-8"></div>
-          </Tooltip>
-
+        <Col>
+          <Col className="hp-bg-info-gradient hp-color-wrapper hp-border-radius hp-mb-8"></Col>
           <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0">
-            Info Gradient
+            Info <br />
+            Gradient
           </p>
         </Col>
 
-        <Col lg={4} span={12}>
-          <Tooltip title="#00f7bf - #98ffa2">
-            <div className="hp-w-100 hp-bg-success-gradient hp-color-wrapper hp-border-radius hp-mb-8"></div>
-          </Tooltip>
-
+        <Col>
+          <Col className="hp-bg-success-gradient hp-color-wrapper hp-border-radius hp-mb-8"></Col>
           <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0">
-            Success Gradient
+            Success <br />
+            Gradient
           </p>
         </Col>
 
-        <Col lg={4} span={12}>
-          <Tooltip title="#ffc212 - #faff00">
-            <div className="hp-w-100 hp-bg-warning-gradient hp-color-wrapper hp-border-radius hp-mb-8"></div>
-          </Tooltip>
-
+        <Col>
+          <Col className="hp-bg-warning-gradient hp-color-wrapper hp-border-radius hp-mb-8"></Col>
           <p className="hp-badge-text hp-text-color-black-100 hp-text-color-dark-0">
-            Warning Gradient
+            Warning <br />
+            Gradient
           </p>
         </Col>
       </Row>

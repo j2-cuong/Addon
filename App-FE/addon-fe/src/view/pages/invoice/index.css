@@ -1,0 +1,39 @@
+.ant-upload-draggable-list-item {
+    border-top: 2px dashed rgba(0, 0, 0, 0);
+    border-bottom: 2px dashed rgba(0, 0, 0, 0);
+  }
+  .ant-upload-draggable-list-item.drop-over-downward {
+    border-bottom-color: #1890ff;
+  }
+  .ant-upload-draggable-list-item.drop-over-upward {
+    border-top-color: #1890ff;
+  }
+  /* .ant-modal, .ant-modal-content {
+    
+   } 
+   .ant-modal-body {
+    height: calc(100vh - 110px);
+   }  */
+  .fix-button {
+    margin-top: 20px;
+  }
+  .fix-Card {
+    border: 1px dashed #b1154a !important ;
+    margin-top: 10px;
+  }
+  .fix-Modal{
+    margin-top: 20px !important;
+    height: calc(100vh - 110px)!important;
+    width: 100vw !important;
+    top: 0 ;
+  }
+
+  .editable-row .ant-form-item-explain {
+    position: absolute;
+    top: 100%;
+    font-size: 12px;
+  }
+  .ant-btn-icon-only{
+    width:unset;
+    height:unset
+  }

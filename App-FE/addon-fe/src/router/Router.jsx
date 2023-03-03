@@ -21,32 +21,23 @@ import HorizontalLayout from "../layout/HorizontalLayout";
 import FullLayout from "../layout/FullLayout";
 
 // Components
-import Analytics from "../view/main/dashboard/analytics";
-import Error404 from "../view/pages/errors/404";
+import HomePage from "../view/home";
+import Error404 from "../view/pages/error";
+import authUtils from "../ultis/authUtils";
+import Login from "../view/pages/authentication/login";
+import PrivateRoute from "./PrivateRoute";
+import PublicRoute from "./PublicRoute";
 
 export default function Router() {
+    const isAuthenticated = authUtils.isAuthenticated();
+    
     // Redux
     const customise = useSelector(state => state.customise)
     const dispatch = useDispatch()
-
-    // Location
-    const location = useHistory()
-
     // Dark Mode
-    let themeLocal
-
     useEffect(() => {
-        if (localStorage) {
-            themeLocal = localStorage.getItem("theme")
-        }
-
-        if (themeLocal === "light" || themeLocal === "dark") {
-            document.querySelector("body").classList.add(themeLocal)
-            dispatch(theme(themeLocal))
-        } else {
-            document.querySelector("body").classList.add(customise.theme)
-            dispatch(theme(customise.theme))
-        }
+        document.querySelector("body").classList.add(customise.theme)
+        dispatch(theme(customise.theme))
     }, [])
 
     // RTL
@@ -54,25 +45,6 @@ export default function Router() {
         if (customise.direction == "ltr") {
             document.querySelector("html").setAttribute("dir", "ltr");
         } else if (customise.direction == "rtl") {
-            document.querySelector("html").setAttribute("dir", "rtl");
-        }
-    }, [])
-
-    // Url Check
-    useEffect(() => {
-        // Theme
-        if (location.location.search == "?theme=dark") {
-            localStorage.setItem("theme", "dark")
-            themeLocal = "dark"
-        } else if (location.location.search == "?theme=light") {
-            localStorage.setItem("theme", "light")
-            themeLocal = "light"
-        }
-
-        // Direction
-        if (location.location.search == "?direction=ltr") {
-            document.querySelector("html").setAttribute("dir", "ltr");
-        } else if (location.location.search == "?direction=rtl") {
             document.querySelector("html").setAttribute("dir", "rtl");
         }
     }, [])
@@ -143,33 +115,19 @@ export default function Router() {
 
     return (
         <BrowserRouter>
-            <Switch>
-                {ResolveRoutes()}
-
-                {/* Home Page */}
-                <Route
-                    exact
-                    path={'/'}
-                    render={() => {
-                        return (
-                            DefaultLayout == "HorizontalLayout" ? (
-                                <Layouts.HorizontalLayout>
-                                    <Analytics />
-                                </Layouts.HorizontalLayout>
-                            ) : (
-                                <Layouts.VerticalLayout>
-                                    <Analytics />
-                                </Layouts.VerticalLayout>
-                            )
-                        )
-                    }}
-                />
-
-                {/* NotFound */}
-                <Route path='*'>
-                    <Error404 />
-                </Route>
-            </Switch>
-        </BrowserRouter>
+        <Suspense fallback={<div>Loading ...</div>}>
+          <Switch>
+            <PublicRoute path="/login" isAuthenticated={isAuthenticated}>
+              <Login />
+            </PublicRoute>
+            <PrivateRoute path="/" isAuthenticated={isAuthenticated}>
+              {ResolveRoutes()}
+            </PrivateRoute>
+            <PublicRoute path="*">
+              <Error404 />
+            </PublicRoute>
+          </Switch>
+        </Suspense>
+      </BrowserRouter>
     );
 };

@@ -30,6 +30,7 @@ export default function HorizontalLayout(props) {
                             </Col>
                         )
                     }
+
                     {
                         customise.contentWidth == "boxed" && (
                             <Col xxl={20} xl={22} span={24}>
@@ -39,7 +40,9 @@ export default function HorizontalLayout(props) {
                     }
                 </Row>
             </Content>
+
             <MenuFooter />
+
             <ScrollTop />
         </Layout>
     );

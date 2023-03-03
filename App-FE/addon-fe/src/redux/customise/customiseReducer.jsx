@@ -61,7 +61,7 @@ const customiseReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 direction: action.payload,
             };
-
+            
         default:
             return state;
     }

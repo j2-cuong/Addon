@@ -4,18 +4,12 @@ import { Row, Col } from "antd";
 
 import Breadcrumbs from "../../../../layout/components/content/breadcrumbs";
 import PageTitle from "../../../../layout/components/content/page-title";
+import ButtonTypes from "./buttonTypes";
 import IconButtons from "./iconButtons";
-import DefaultButtons from "./defaultButtons";
-import LargeButtons from "./largeButtons";
+import ButtonSizes from "./buttonSizes";
 import DisabledButton from "./disabledButton";
-import GhostButtons from "./ghostButtons";
-import SmallButtons from "./smallButtons";
-import TextButtons from "./textButtons";
-import LinkButtons from "./linkButtons";
-import DashedButtons from "./dashedButtons";
-import OutlineButtons from "./outlineButtons";
-import GradientButtons from "./gradientButtons";
-import OnlyIconButtons from "./onlyIconButtons";
+import GhostButton from "./ghostButton";
+import DangerButton from "./dangerButton";
 
 export default function Buttons() {
   return (
@@ -36,27 +30,19 @@ export default function Buttons() {
       </Col>
 
       <Col span={24}>
-        <DefaultButtons />
+        <ButtonTypes />
       </Col>
 
       <Col span={24}>
-        <LargeButtons />
+        <ButtonSizes />
       </Col>
 
       <Col span={24}>
-        <SmallButtons />
+        <GhostButton />
       </Col>
 
       <Col span={24}>
-        <TextButtons />
-      </Col>
-
-      <Col span={24}>
-        <LinkButtons />
-      </Col>
-
-      <Col span={24}>
-        <DashedButtons />
+        <IconButtons />
       </Col>
 
       <Col span={24}>
@@ -64,23 +50,7 @@ export default function Buttons() {
       </Col>
 
       <Col span={24}>
-        <OutlineButtons />
-      </Col>
-
-      <Col span={24}>
-        <GhostButtons />
-      </Col>
-
-      <Col lg={12} span={24}>
-        <IconButtons />
-      </Col>
-
-      <Col lg={12} span={24}>
-        <OnlyIconButtons />
-      </Col>
-
-      <Col span={24}>
-        <GradientButtons />
+        <DangerButton />
       </Col>
     </Row>
   );

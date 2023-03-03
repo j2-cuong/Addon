@@ -10,7 +10,6 @@ import "./assets/icons/remixicon.css";
 import "./assets/less/yoda-theme.less";
 
 import App from "./App";
-import "./assets/index.css"
 
 ReactDOM.render(
   <Suspense fallback="loading">

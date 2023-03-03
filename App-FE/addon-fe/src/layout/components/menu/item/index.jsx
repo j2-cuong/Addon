@@ -1,8 +1,7 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
 
-import { useSelector, useDispatch } from 'react-redux';
-import { loadCurrentItem } from "../../../../redux/ecommerce/ecommerceActions";
+import { useSelector } from 'react-redux';
 
 import {
     Menu,
@@ -16,9 +15,7 @@ export default function MenuItem(props) {
     const { onClose } = props;
 
     // Redux
-    const products = useSelector(state => state.ecommerce.products)
     const customise = useSelector(state => state.customise)
-    const dispatch = useDispatch()
 
     // Location
     const location = useLocation();
@@ -58,22 +55,7 @@ export default function MenuItem(props) {
                                     }
                                     onClick={onClose}
                                 >
-                                    {
-                                        childrens.id === 'product-detail' ? (
-                                            <Link
-                                                to={childrens.navLink}
-                                                onClick={() => dispatch(loadCurrentItem(products[0]))}
-                                            >
-                                                {childrens.title}
-                                            </Link>
-                                        ) : (
-                                            (childrens.id.split("-")[0]) === 'email' ? (
-                                                <a href={childrens.navLink} target="_blank">{childrens.title}</a>
-                                            ) : (
-                                                <Link to={childrens.navLink}>{childrens.title}</Link>
-                                            )
-                                        )
-                                    }
+                                    <Link to={childrens.navLink}>{childrens.title}</Link>
                                 </Menu.Item>
                             );
                         } else {

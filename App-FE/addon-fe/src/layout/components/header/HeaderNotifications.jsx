@@ -18,12 +18,11 @@ export default function HeaderNotifications() {
         </Col>
 
         <Col className="hp-bg-color-primary-1 hp-border-radius-full hp-badge-text hp-text-color-black-0 hp-py-4 hp-px-6 hp-ml-24">
-          4 New
+          1 New
         </Col>
       </Row>
 
       <Divider className="hp-my-4" />
-
       <div className="hp-overflow-y-auto hp-px-10" style={{ maxHeight: 300, marginRight: -10, marginLeft: -10 }}>
         <Row align="middle" className="hp-cursor-pointer hp-border-radius hp-transition hp-hover-bg-primary-4 hp-hover-bg-dark-80 hp-py-8 hp-px-10" style={{ marginLeft: -10, marginRight: -10 }}>
           <Col className="hp-mr-8">
@@ -36,80 +35,16 @@ export default function HeaderNotifications() {
 
           <Col>
             <span className="hp-d-block hp-w-100 hp-mb-4 hp-font-weight-500 hp-p1-body">
-              New message received 💌
+              Create Base Admin template
           </span>
 
             <span className="hp-d-block hp-badge-text hp-font-weight-400 hp-text-color-black-60 hp-text-color-dark-40">
-              24 unread messages.
+              Nguyễn Hữu Cường
           </span>
           </Col>
         </Row>
 
-        <Divider className="hp-my-4" />
-
-        <Row align="middle" className="hp-cursor-pointer hp-border-radius hp-transition hp-hover-bg-primary-4 hp-hover-bg-dark-80 hp-py-8 hp-px-10" style={{ marginLeft: -10, marginRight: -10 }}>
-          <Col className="hp-mr-8">
-            <Avatar
-              size={38}
-              icon={<TickSquare size={16} className="hp-text-color-success-1" />}
-              className="hp-d-flex-center-full hp-bg-success-4"
-            />
-          </Col>
-
-          <Col>
-            <span className="hp-d-block hp-w-100 hp-mb-4 hp-font-weight-500 hp-p1-body">
-              Congratulations team 🎉
-          </span>
-
-            <span className="hp-d-block hp-badge-text hp-font-weight-400 hp-text-color-black-60 hp-text-color-dark-40">
-              You have 12 new sales!
-          </span>
-          </Col>
-        </Row>
-
-        <Divider className="hp-my-4" />
-
-        <Row align="middle" className="hp-cursor-pointer hp-border-radius hp-transition hp-hover-bg-primary-4 hp-hover-bg-dark-80 hp-py-8 hp-px-10" style={{ marginLeft: -10, marginRight: -10 }}>
-          <Col className="hp-mr-8">
-            <Avatar
-              size={38}
-              icon={<CloseSquare size={16} className="hp-text-color-danger-1" />}
-              className="hp-d-flex-center-full hp-bg-danger-4"
-            />
-          </Col>
-
-          <Col>
-            <span className="hp-d-block hp-w-100 hp-mb-4 hp-font-weight-500 hp-p1-body">
-              Network Error ⛔️
-          </span>
-
-            <span className="hp-d-block hp-badge-text hp-font-weight-400 hp-text-color-black-60 hp-text-color-dark-40">
-              Operation couldn’t be completed
-          </span>
-          </Col>
-        </Row>
-
-        <Divider className="hp-my-4" />
-
-        <Row align="middle" className="hp-cursor-pointer hp-border-radius hp-transition hp-hover-bg-primary-4 hp-hover-bg-dark-80 hp-py-8 hp-px-10" style={{ marginLeft: -10, marginRight: -10 }}>
-          <Col className="hp-mr-8">
-            <Avatar
-              size={38}
-              icon={<Danger size={16} className="hp-text-color-warning-1" />}
-              className="hp-d-flex-center-full hp-bg-warning-4"
-            />
-          </Col>
-
-          <Col>
-            <span className="hp-d-block hp-w-100 hp-mb-4 hp-font-weight-500 hp-p1-body">
-              Disk Utility 💥
-          </span>
-
-            <span className="hp-d-block hp-badge-text hp-font-weight-400 hp-text-color-black-60 hp-text-color-dark-40">
-              You have not enough disk capacity
-          </span>
-          </Col>
-        </Row>
+        
       </div>
 
       <Divider className="hp-my-4" />

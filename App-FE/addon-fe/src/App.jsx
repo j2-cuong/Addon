@@ -6,7 +6,7 @@ import Router from "./router/Router";
 
 export default function App() {
   const customise = useSelector(state => state.customise)
-
+  console.log(customise)
   return (
     <ConfigProvider direction={customise.direction}>
       <Router />

@@ -1,13 +1,13 @@
 const themeConfig = {
-    version: "1.0.0.0",
+    version: "1.6",
     theme: "light", // light - dark
-    contentWidth: "full", 
+    contentWidth: "full", // full - boxed
     sidebarCollapsed: false,
     sidebarCollapseButton: true,
-    layout: "HorizontalLayout", // VerticalLayout - HorizontalLayout
+    layout: "VerticalLayout", // VerticalLayout - HorizontalLayout
     navigationFull: false,
     navigationBg: false,
-    direction: "ltr",
+    direction: "ltr", // ltr - rtl
 }
 
 export default themeConfig
