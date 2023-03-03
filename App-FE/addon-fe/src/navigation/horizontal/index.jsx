@@ -1,5 +1,5 @@
-import main from "./main";
+import pages from "./pages";
 
-const navigation = [...main];
+const navigation = [...pages];
 
 export default navigation

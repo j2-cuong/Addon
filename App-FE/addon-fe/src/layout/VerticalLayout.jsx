@@ -2,11 +2,11 @@ import React, { useState } from "react";
 
 import { useSelector } from "react-redux";
 
-import { Layout, Row, Col } from "antd";
+import { Col, Layout, Row } from "antd";
 
-import Sidebar from "./components/menu/Sidebar";
+import MenuFooter from "./components/footer";
 import MenuHeader from "./components/header";
-import CustomiseTheme from "./components/customise";
+import Sidebar from "./components/menu/Sidebar";
 import ScrollTop from "./components/scroll-to-top";
 
 const { Content } = Layout;
@@ -45,8 +45,10 @@ export default function VerticalLayout(props) {
                         }
                     </Row>
                 </Content>
+
+                <MenuFooter />
             </Layout>
-            <CustomiseTheme />
+
             <ScrollTop />
         </Layout>
     );

@@ -5,7 +5,7 @@ import { monoBlue } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { disabledButton } from "./code.js";
 
 import { Card, Row, Col, Button } from "antd";
-import { RiArrowRightSLine, RiCodeSSlashLine } from "react-icons/ri";
+import { RiCodeSSlashLine } from "react-icons/ri";
 
 export default function DisabledButton() {
   const [checkedCode, setCheckedCode] = useState(false);
@@ -34,23 +34,85 @@ export default function DisabledButton() {
           />
         </Col>
 
-        <Row align="middle">
-          <Col>
+        <Row>
+          <Col span={24}>
+            <Button className="hp-mr-16 hp-mb-16" type="primary">
+              Primary
+            </Button>
+
             <Button className="hp-mr-16 hp-mb-16" type="primary" disabled>
-              Primary Button
+              Primary(disabled)
             </Button>
-          </Col>
 
-          <Col>
-            <Button className="hp-mr-16 hp-mb-16" type="primary" icon={<RiArrowRightSLine className="remix-icon" />} disabled>
-              Primary Button
+            <Button className="hp-mr-16 hp-mb-16">Default</Button>
+
+            <Button className="hp-mr-16 hp-mb-16" disabled>
+              Default(disabled)
             </Button>
-          </Col>
 
-          <Col>
+            <br />
+
+            <Button className="hp-mr-16 hp-mb-16" type="dashed">
+              Dashed
+            </Button>
+
+            <Button className="hp-mr-16 hp-mb-16" type="dashed" disabled>
+              Dashed(disabled)
+            </Button>
+
+            <Button className="hp-mr-16 hp-mb-16" danger>
+              Danger Default
+            </Button>
+
+            <Button className="hp-mr-16 hp-mb-16" danger disabled>
+              Danger Default(disabled)
+            </Button>
+
+            <br />
+
+            <Button className="hp-mr-16 hp-mb-16" type="link">
+              Link
+            </Button>
+
+            <Button className="hp-mr-16 hp-mb-16" type="link" disabled>
+              Link(disabled)
+            </Button>
+
+            <Button className="hp-mr-16 hp-mb-16" type="text">
+              Text
+            </Button>
+
             <Button className="hp-mr-16 hp-mb-16" type="text" disabled>
-              Text button
+              Text(disabled)
             </Button>
+
+            <br />
+
+            <Button className="hp-mr-16 hp-mb-16" danger type="text">
+              Danger Text
+            </Button>
+
+            <Button className="hp-mr-16 hp-mb-16" danger type="text" disabled>
+              Danger Text(disabled)
+            </Button>
+
+            <Button className="hp-mr-16 hp-mb-16" type="link" danger>
+              Danger Link
+            </Button>
+
+            <Button className="hp-mr-16 hp-mb-16" type="link" danger disabled>
+              Danger Link(disabled)
+            </Button>
+
+            <Col className="hp-d-inline-block hp-bg-color-black-20 hp-bg-color-dark-90 hp-px-16 hp-pt-16">
+              <Button className="hp-mr-16 hp-mb-16" ghost>
+                Ghost
+              </Button>
+
+              <Button className="hp-mr-16 hp-mb-16" ghost disabled>
+                Ghost(disabled)
+              </Button>
+            </Col>
           </Col>
         </Row>
       </Row>

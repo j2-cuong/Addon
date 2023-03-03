@@ -11,7 +11,7 @@ const BreadCrumbs = (props) => {
 
   return (
     <Col>
-      <Breadcrumb className="hp-d-flex hp-flex-wrap">
+      <Breadcrumb  separator=">" className="hp-d-flex hp-flex-wrap">
         <Breadcrumb.Item>
           <Link to="/">Home</Link>
         </Breadcrumb.Item>

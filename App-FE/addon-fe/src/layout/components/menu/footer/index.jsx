@@ -28,22 +28,22 @@ export default function MenuFooter(props) {
             <div>
               <span className="hp-d-block hp-text-color-black-100 hp-text-color-dark-0 hp-p1-body">
                 Jane Doe
-            </span>
+             </span>
 
               <Link
-                to="/pages/profile/personel-information"
+                to="#"
                 className="hp-badge-text hp-text-color-dark-30"
                 onClick={props.onClose}
               >
                 View Profile
-            </Link>
+             </Link>
             </div>
           </Row>
         </Col>
 
         <Col>
           <Link
-            to="/pages/profile/security"
+            to="#"
             onClick={props.onClose}
           >
             <RiSettings3Line
@@ -61,7 +61,7 @@ export default function MenuFooter(props) {
       >
         <Col>
           <Link
-            to="/pages/profile/personel-information"
+            to="#"
             onClick={props.onClose}
           >
             <Avatar size={36} src={avatar} />
