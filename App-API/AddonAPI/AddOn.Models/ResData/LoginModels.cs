@@ -6,6 +6,23 @@ using System.Threading.Tasks;
 
 namespace AddOn.Models.ResData
 {
+    public class GetDeposit
+    {
+        public string? Code { get; set; }
+        public string? Message { get; set; }
+        public _data? Data { get; set; }
+        public class _data
+        {
+            public string? PartnerCode { get; set; }
+            public decimal DepositAmount { get; set; }
+            public bool DepositTour { get; set; }
+            public bool DepositHotel { get; set; }
+        }
+    }
+    public class LoginKey
+    {
+        public string? Data { get; set; }
+    }
     public class _partner
     {
         public string? ParentCode { get; set; }

@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\01.Common\Addon.Core\Addon.Core.csproj" />
     <ProjectReference Include="..\..\AddOn.Models\AddOn.Models.csproj" />
   </ItemGroup>
 
