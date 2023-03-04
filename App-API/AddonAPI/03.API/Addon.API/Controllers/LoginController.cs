@@ -34,7 +34,7 @@ namespace Addon.API.Controllers
         {
             return await svc.CreateKeyLogin(request);
         }
-        [Route("GetData/GetDepositByPartnerCode")]
+        [Route("GetDepositByPartnerCode")]
         [HttpPost]
         public async Task<CommonResponse<GetDeposit._data>> GetDepositByPartnerCode(GetDepositRequest request)
         {
