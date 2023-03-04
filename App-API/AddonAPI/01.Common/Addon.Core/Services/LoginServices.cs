@@ -26,12 +26,20 @@ namespace Addon.Core.Services
             }
         }
 
-        public async Task<CommonResponse<LoginKey>> CreateKeyLogin(LoginEcoRequest request)
+        public async Task<CommonResponse<string>> CreateKeyLogin(LoginEcoRequest request)
         {
             HttpResponseMessage resMsg = await apiBase._postAsync(request, "CreateAuthKeyForTest");
             string DataStr = resMsg.Content.ReadAsStringAsync().Result;
             LoginKey JRes = JsonConvert.DeserializeObject<LoginKey>(DataStr);
-            return StaticResult.Success<LoginKey>(JRes);
+            switch (JRes.Code)
+            {
+                case "0":
+                    return StaticResult.Success<string>(JRes.Data);
+                    break;
+                default:
+                    return StaticResult.Error<string>(JRes.Message, JRes.Code);
+                    break;
+            }
         }
         public async Task<CommonResponse<LoginModels._data>> AuthenKey(AuthenRequest request)
         {

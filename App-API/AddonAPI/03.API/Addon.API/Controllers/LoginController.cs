@@ -30,7 +30,7 @@ namespace Addon.API.Controllers
         }
         [Route("CreateKeyLogin")]
         [HttpPost]
-        public async Task<CommonResponse<LoginKey>> CreateKeyLogin(LoginEcoRequest request)
+        public async Task<CommonResponse<string>> CreateKeyLogin(LoginEcoRequest request)
         {
             return await svc.CreateKeyLogin(request);
         }

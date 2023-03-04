@@ -21,6 +21,8 @@ namespace AddOn.Models.ResData
     }
     public class LoginKey
     {
+        public string? Code { get; set; }
+        public string? Message { get; set; }
         public string? Data { get; set; }
     }
     public class _partner
