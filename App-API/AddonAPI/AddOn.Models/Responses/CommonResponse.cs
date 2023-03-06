@@ -12,7 +12,7 @@ namespace AddOn.Models.Responses
         {
             return new CommonResponse<T>()
             {
-                code = "00",
+                code = "0",
                 message = "Thành công.",
                 Data = Data
             };
@@ -21,7 +21,7 @@ namespace AddOn.Models.Responses
         {
             return new CommonResponse()
             {
-                code = "00",
+                code = "999",
                 message = Msg,
             };
         }
@@ -32,6 +32,15 @@ namespace AddOn.Models.Responses
                 code = code,
                 message = Msg,
             };
+        }
+        public enum ErrorCode
+        {
+            Success = 0,
+
+            Missing = 401,
+            NotFound = 404,
+
+            SysErr = 999
         }
     }
     public class CommonResponse<T>
