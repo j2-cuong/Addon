@@ -11,11 +11,48 @@ namespace Addon.API.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        ILoginSvc svc;
-        public LoginController(ILoginSvc _svc)
+        ILoginServices svc;
+        public LoginController(ILoginServices _svc)
         {
             svc = _svc;
         }
+
+
+        /// <summary>
+        /// LoginEco.
+        /// </summary>
+        /// <remarks>
+        /// Example: sử dụng Postman
+        /// 
+        /// METHOD : POST
+        /// 
+        /// I, Thẻ headers bao gồm : 
+        /// 
+        /// II, Thẻ body - raw - đổi text thành Json
+        /// 
+        /// III, Json mẫu
+        /// 
+        ///     {
+        ///     	"clientType": "Test",
+        ///     	"accountName": "tester021",
+        ///     	"accountPass": "tester01",
+        ///     	"accountEmail": "tester01dgmail.com",
+        ///     	"accountPhone": "096668312001",
+        ///     	"isPermission": 0,
+        ///     	"isConfirm": true,
+        ///     	"isBlock": false,
+        ///     	"createBy": true
+        ///     
+        ///     }
+        ///
+        /// IV, Note
+        /// 
+        /// 
+        /// @CreateBy bit, (false - Hệ thống, true - Admin)
+        /// 
+        /// @isBlock bit, (false - Hệ thống, true - Admin)
+        /// 
+        /// </remarks>
         [Route("LoginEco")]
         [HttpPost]
         public async Task<CommonResponse<LoginModels._data>> LoginEco(LoginEcoRequest request)
