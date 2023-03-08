@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Addon.Core.Services
 {
-    public class LoginServices : ILoginSvc
+    public class LoginServices : ILoginServices
     {
         ApiBase apiBase = new ApiBase();
         public async Task<CommonResponse<LoginModels._data>> LoginEcoSvc(LoginEcoRequest request)
