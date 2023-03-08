@@ -45,6 +45,11 @@
 **App-FE/addon-fe/node_modules
 **App-FE/addon-fe/**/.pnp
 **App-FE/addon-fe/.pnp
+
+**New-FE/node_modules
+**New-FE/**/.pnp
+**New-FE/.pnp
+
 .pnp.js
 .vscode/*
 !.vscode/settings.json

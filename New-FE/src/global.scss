@@ -1,0 +1,20 @@
+* {
+  font-family: 'Inter', sans-serif !important;
+}
+
+.user-menu-dropdown {
+  .ant-dropdown-menu-item {
+    padding: 12px !important;
+    .anticon {
+      font-size: 16px;
+    }
+  }
+}
+
+.ant-menu-item:active, .ant-menu-submenu-title:active, .ant-menu-item-selected {
+  background-color: #2c3344 !important;
+}
+
+.ant-menu {
+  background-color: transparent !important;
+}
