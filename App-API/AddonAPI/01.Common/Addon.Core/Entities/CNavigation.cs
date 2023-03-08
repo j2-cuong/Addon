@@ -7,9 +7,11 @@ namespace Addon.Core.Entities
     {
         public Guid NavId { get; set; }
         public string NavCode { get; set; } = null!;
-        public string? Title { get; set; }
-        public string? Url { get; set; }
-        public string? UserRole { get; set; }
-        public int? PartnerLevel { get; set; }
+        public string NavName { get; set; } = null!;
+        public string NavUrl { get; set; } = null!;
+        public bool? IsAdmin { get; set; }
+        public bool? IsMod { get; set; }
+        public bool? IsBooking { get; set; }
+        public bool? IsAccounting { get; set; }
     }
 }

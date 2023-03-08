@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Addon.Core.ConnectProcess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -38,7 +37,8 @@ namespace Addon.Core.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(ConnectString.Connect);
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Data Source=115.146.126.196,1444\\\\\\\\SQLExpress;Initial Catalog=AddonDB;User ID=sa;Password=9Gs3#fcJl&4O; MultipleActiveResultSets=True; Max Pool Size = 1024; Connect Timeout = 60");
             }
         }
 
@@ -82,24 +82,20 @@ namespace Addon.Core.Entities
             modelBuilder.Entity<CNavigation>(entity =>
             {
                 entity.HasKey(e => e.NavId)
-                    .HasName("PK__C_Naviga__67283A537F7F0854");
+                    .HasName("PK__C_Naviga__67283A730C735909");
 
                 entity.ToTable("C_Navigation");
 
-                entity.HasIndex(e => e.NavCode, "UQ__C_Naviga__1A7D6222EE71D514")
-                    .IsUnique();
-
-                entity.Property(e => e.NavId).ValueGeneratedNever();
+                entity.Property(e => e.NavId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("NavID");
 
                 entity.Property(e => e.NavCode)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .IsFixedLength();
 
-                entity.Property(e => e.Title).HasMaxLength(250);
-
-                entity.Property(e => e.UserRole)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.NavName).HasMaxLength(50);
             });
 
             modelBuilder.Entity<CTourCategory>(entity =>
