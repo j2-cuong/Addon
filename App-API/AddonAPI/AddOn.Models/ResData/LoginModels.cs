@@ -55,4 +55,10 @@ namespace AddOn.Models.ResData
             public _user? User { get; set; }
         }
     }
+    public class ResToken
+    {
+        public _partner? Partner { get; set; }
+        public _user? User { get; set; }
+        public string? Token { get; set; }
+    }
 }

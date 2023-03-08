@@ -1,4 +1,6 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using AddOn.Models.ResData;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -12,14 +14,15 @@ namespace Addon.Core.Authorize
     public class Token
     {
         public static string Secret = "C19DC594483209615BD5F73F5235C3B35CEE1A15FD7A95AAD42DA04BAA9B587F";
-        public string GenerateToken(string username)
+        public string GenerateToken(LoginModels._data data)
         {
             byte[]? key = Convert.FromBase64String(Secret);
             SymmetricSecurityKey? securityKey = new SymmetricSecurityKey(key);
             SecurityTokenDescriptor? descriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] {
-                      new Claim(ClaimTypes.Name, username)}),
+                      new Claim("UserData", JsonConvert.SerializeObject(data.User)),
+                      new Claim("PartnerData", JsonConvert.SerializeObject(data.Partner))}),
                 Expires = DateTime.UtcNow.AddMinutes(10),
                 SigningCredentials = new SigningCredentials(securityKey,
                 SecurityAlgorithms.HmacSha256Signature)
