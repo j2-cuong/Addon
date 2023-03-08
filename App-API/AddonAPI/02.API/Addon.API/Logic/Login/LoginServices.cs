@@ -1,5 +1,6 @@
 ﻿using Addon.Core.Common;
 using Addon.Core.Entities;
+﻿using Addon.Core.Authorize;
 using Addon.Core.Interfaces;
 using AddOn.Models.Requests;
 using AddOn.Models.ResData;
@@ -12,14 +13,14 @@ namespace Addon.Core.Services
     public class LoginServices : ILoginServices
     {
         ApiBase apiBase = new ApiBase();
-        public async Task<CommonResponse<LoginModels._data>> LoginEcoSvc(LoginEcoRequest request)
+        public async Task<CommonResponse<ResToken>> LoginEcoSvc(LoginEcoRequest request)
         {
 
             request.PartnerCode = "DEMO";
             request.UserName = "huynguyen";
             request.Password = "Huy@@789##";
 
-            CommonResponse<LoginModels._data> res = new CommonResponse<LoginModels._data>();
+            CommonResponse<ResToken> res = new CommonResponse<ResToken>();
             HttpResponseMessage resMsg = await apiBase._postAsync(request, "Authentication");
             string DataStr = resMsg.Content.ReadAsStringAsync().Result;
             LoginModels JRes = JsonConvert.DeserializeObject<LoginModels>(DataStr);
@@ -31,10 +32,17 @@ namespace Addon.Core.Services
             {
                 case "0":
                     var a = GetNav(UserRole).Result;
-                    res = StaticResult.Success<LoginModels._data>(JRes.Data);
+                    string token = new Token().GenerateToken(JRes.Data);
+                    ResToken resData = new ResToken()
+                    {
+                        Partner = JRes.Data.Partner,
+                        User = JRes.Data.User,
+                        Token= token
+                    };
+                    res = StaticResult.Success<ResToken>(resData);
                     break;
                 default:
-                    res = StaticResult.Error<LoginModels._data>(JRes.Message, JRes.Code);
+                    res = StaticResult.Error<ResToken>(JRes.Message, JRes.Code);
                     break;
             }
             return res;
@@ -57,19 +65,26 @@ namespace Addon.Core.Services
             }
             return res;
         }
-        public async Task<CommonResponse<LoginModels._data>> AuthenKey(AuthenRequest request)
+        public async Task<CommonResponse<ResToken>> AuthenKey(AuthenRequest request)
         {
-            CommonResponse<LoginModels._data> res = new CommonResponse<LoginModels._data>();
+            CommonResponse<ResToken> res = new CommonResponse<ResToken>();
             HttpResponseMessage resMsg = await apiBase._postAsync(request, "AuthKey");
             string DataStr = resMsg.Content.ReadAsStringAsync().Result;
             LoginModels JRes = JsonConvert.DeserializeObject<LoginModels>(DataStr);
             switch (JRes.Code)
             {
                 case "0":
-                    res = StaticResult.Success<LoginModels._data>(JRes.Data);
+                    string token = new Token().GenerateToken(JRes.Data);
+                    ResToken resData = new ResToken()
+                    {
+                        Partner = JRes.Data.Partner,
+                        User = JRes.Data.User,
+                        Token = token
+                    };
+                    res = StaticResult.Success<ResToken>(resData);
                     break;
                 default:
-                    res = StaticResult.Error<LoginModels._data>(JRes.Message, JRes.Code);
+                    res = StaticResult.Error<ResToken>(JRes.Message, JRes.Code);
                     break;
             }
             return res;
