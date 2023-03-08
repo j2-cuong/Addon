@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\01.Common\Addon.Core\Addon.Core.csproj" />
+    <ProjectReference Include="..\..\01.Common\Addon.DataProcess\Addon.DataProcess.csproj" />
     <ProjectReference Include="..\..\AddOn.Models\AddOn.Models.csproj" />
   </ItemGroup>
 
