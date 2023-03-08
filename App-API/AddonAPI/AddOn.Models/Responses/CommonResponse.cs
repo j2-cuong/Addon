@@ -78,13 +78,11 @@ namespace AddOn.Models.Responses
 
         [JsonConstructor]
         public Response(
-            int status, string message = null, string id = null, object data = null, string token = null)
+            int status, string message = null, object data = null, string token = null)
             : base(status, message)
         {
-            ID = id;
             Data = data;
             Token = token;
         }
-
     }
 }

@@ -45,7 +45,7 @@ namespace Addon.API.Controllers
         /// </remarks>
         [Route("LoginEco")]
         [HttpPost]
-        public async Task<CommonResponse<ResToken>> LoginEco(LoginEcoRequest request)
+        public async Task<Response<ResToken>> LoginEco(LoginEcoRequest request)
         {
             return await svc.LoginEcoSvc(request);
         }
