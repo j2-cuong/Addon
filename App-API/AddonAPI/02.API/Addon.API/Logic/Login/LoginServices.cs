@@ -1,9 +1,11 @@
 ﻿using Addon.Core.Common;
+using Addon.Core.Entities;
 using Addon.Core.Interfaces;
 using AddOn.Models.Requests;
 using AddOn.Models.ResData;
 using AddOn.Models.Responses;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Addon.Core.Services
 {
@@ -12,13 +14,23 @@ namespace Addon.Core.Services
         ApiBase apiBase = new ApiBase();
         public async Task<CommonResponse<LoginModels._data>> LoginEcoSvc(LoginEcoRequest request)
         {
+
+            request.PartnerCode = "DEMO";
+            request.UserName = "huynguyen";
+            request.Password = "Huy@@789##";
+
             CommonResponse<LoginModels._data> res = new CommonResponse<LoginModels._data>();
             HttpResponseMessage resMsg = await apiBase._postAsync(request, "Authentication");
             string DataStr = resMsg.Content.ReadAsStringAsync().Result;
             LoginModels JRes = JsonConvert.DeserializeObject<LoginModels>(DataStr);
+
+            JObject jObject = JObject.Parse(DataStr);
+            var UserRole = (string)jObject["Data"]["User"]["UserRole"];
+
             switch (JRes.Code)
             {
                 case "0":
+                    var a = GetNav(UserRole).Result;
                     res = StaticResult.Success<LoginModels._data>(JRes.Data);
                     break;
                 default:
@@ -78,6 +90,34 @@ namespace Addon.Core.Services
                     break;
             }
             return res;
+        }
+
+        public async Task<Response<List<CNavigation>>> GetNav(string PermissionName)
+        {
+            AddonDBContext context = new AddonDBContext();
+            string key = string.Empty;
+            if(PermissionName == "ADMIN")
+            {
+                key = "IsAdmin";
+            } else if(PermissionName == "ISSUE")
+            {
+                key = "IsMod";
+            } else if(PermissionName == "Booking")
+            {
+                key = "IsBooking";
+            } else
+            {
+                key = "IsAccounting";
+            }
+            var result = (from a in context.CNavigations
+                          where key.Contains("1")
+                          select a).ToList();
+
+            return new Response<List<CNavigation>>(
+                            SuccessCode.CreateCode,
+                            SuccessMessage.CreateMessage,
+                            result.ToString()
+                            );
         }
     }
 }
