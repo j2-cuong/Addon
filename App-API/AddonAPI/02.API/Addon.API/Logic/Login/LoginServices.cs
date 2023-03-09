@@ -10,6 +10,10 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Data;
 using Addon.DataProcess.DataProcess;
+using System.Linq;
+using System.Collections;
+using System.Text.Json.Nodes;
+using static Addon.Core.Const.PermissionMode;
 
 namespace Addon.Core.Services
 {
@@ -18,6 +22,12 @@ namespace Addon.Core.Services
         ApiBase apiBase = new ApiBase();
         public async Task<Response<ResToken>> LoginEcoSvc(LoginEcoRequest request)
         {
+           
+                request.PartnerCode = "DEMO";
+                request.UserName = "accounting";
+                request.Password = "123456@@";
+            
+
 
             //request.PartnerCode = "DEMO";
             //request.UserName = "huynguyen";
@@ -112,38 +122,24 @@ namespace Addon.Core.Services
             return res;
         }
 
-        public List<CNavigation> GetNav(string PermissionName)
+        public List<NavigationModel> GetNav(string PermissionName)
         {
             AddonDBContext context = new AddonDBContext();
-            string key = string.Empty;
-            if(PermissionName == "ADMIN")
-            {
-                key = "IsAdmin";
-            } else if(PermissionName == "ISSUE")
-            {
-                key = "IsMod";
-            } else if(PermissionName == "Booking")
-            {
-                key = "IsBooking";
-            } else
-            {
-                key = "IsAccounting";
-            }
             List<CNavigation> result = new List<CNavigation>();
             result = (from i in context.CNavigations
-                      where i.IsAdmin.Contains(key)
+                      where (i.IsPermission.Contains(PermissionName)) && (i.ChildLevel == 0)
                       select i).ToList();
 
-            var a = result.Select(o => new CNavigation
+            var getMenu = result.Select(o => new NavigationModel
             {
-                NavId = o.NavId,
-                NavCode = o.NavCode,
                 NavName = o.NavName,
                 NavUrl = o.NavUrl,
-                IsAdmin = o.IsAdmin,
-            })
+                ParentLevel = o.ParentLevel,
+                ChildLevel  = o.ChildLevel,
+            }).OrderByDescending(x => x.ParentLevel).ThenBy(x => x.ChildLevel)
             .ToList();
-            return a;
+            //var getSubMenu 
+            return getMenu;
         }
     }
 }
