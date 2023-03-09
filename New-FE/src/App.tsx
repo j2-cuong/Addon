@@ -25,7 +25,7 @@ const App: FC = () => {
 
   const appInitializer = useCallback(() => {
     const currentTheme = localStorage.getItem('appTheme');
-    setTheme(currentTheme || '#ab9332');
+    setTheme(currentTheme || '#5522bb');
   }, [setTheme]);
 
   useEffect(() => {

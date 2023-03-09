@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { Button, Checkbox, Form, Input, message } from 'antd';
+import { BarcodeOutlined, UserOutlined } from '@ant-design/icons';
 import { FormRow } from '@/features/auth/components/LoginForm/LoginFormStyled';
 import { Link, useHistory } from 'react-router-dom';
 import { TAuthenticationPayload } from '@/types/authentication';
@@ -16,7 +17,7 @@ const LoginForm = () => {
     console.log(payload);
     localStorage.setItem('jwt', 'ahihi token test thoi');
     history.push(getPath('dashboard'));
-    void message.success('Welcome!');
+    void message.success('Đăng nhập thành công');
   }, [history]);
 
   return (
@@ -28,13 +29,23 @@ const LoginForm = () => {
           <Form form={form} layout={'vertical'} onFinish={handleLogin}>
 
             <Form.Item
+              name={'partnercode'}
+              label={'Mã đại lý'}
+              rules={[
+                {required: true, message: 'Vui lòng nhập mã đại lý!'},
+              ]}
+            >
+              <Input suffix={<BarcodeOutlined></BarcodeOutlined>}/>
+            </Form.Item>
+
+            <Form.Item
               name={'username'}
               label={'Tên đăng nhập'}
               rules={[
                 { required: true, message: 'Vui lòng nhập tên đăng nhập!' },
               ]}
             >
-              <Input placeholder={'Tên đăng nhập'} />
+              <Input suffix={<UserOutlined></UserOutlined>}/>
             </Form.Item>
 
             <Form.Item
@@ -44,7 +55,7 @@ const LoginForm = () => {
                 { required: true, message: 'Vui lòng nhập mật khẩu!' },
               ]}
             >
-              <Input.Password placeholder={'Mật khẩu'} />
+              <Input.Password/>
             </Form.Item>
 
             <FormRow>

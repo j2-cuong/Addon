@@ -7,7 +7,6 @@ import LoginPage from '@pages/LoginPage';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { message } from 'antd';
 import ProtectedRoute from '@routes/ProtectedRoute';
-import RegisterPage from '@pages/RegisterPage';
 
 const history = createBrowserHistory();
 const MainRoutes = lazy(() => import('@routes/MainRoutes'));
@@ -41,7 +40,6 @@ const AppRoutes: FC = () => {
     <Router history={history}>
       <Switch>
         <Route exact path={getPath('login')} component={LoginPage} />
-        <Route exact path={getPath('register')} component={RegisterPage} />
         <ProtectedRoute exact path={privatePaths} component={MainRoutes} />
         <Route path={'*'} component={NotFoundPage} />
       </Switch>

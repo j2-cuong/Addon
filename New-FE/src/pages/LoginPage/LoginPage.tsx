@@ -17,9 +17,6 @@ const LoginPage = () => {
   return (
     <AuthLayout
       title={'Đăng nhập'}
-      subTitle={(
-        <p>Chưa có tài khoản? <span onClick={() => history.push(getPath('register'))}>Đăng ký</span></p>
-      )}
     >
       <AppHelmet title={'Đăng nhập'} />
       <LoginForm />
