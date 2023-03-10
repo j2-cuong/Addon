@@ -13,7 +13,7 @@ using Addon.DataProcess.DataProcess;
 using System.Linq;
 using System.Collections;
 using System.Text.Json.Nodes;
-using static Addon.Core.Const.PermissionMode;
+using static Addon.Core.PermissionMode;
 
 namespace Addon.Core.Services
 {
@@ -22,11 +22,11 @@ namespace Addon.Core.Services
         ApiBase apiBase = new ApiBase();
         public async Task<Response<ResToken>> LoginEcoSvc(LoginEcoRequest request)
         {
-           
-                request.PartnerCode = "DEMO";
-                request.UserName = "accounting";
-                request.Password = "123456@@";
-            
+
+            request.PartnerCode = "DEMO";
+            request.UserName = "booker";
+            request.Password = "123456@@";
+
 
 
             //request.PartnerCode = "DEMO";
@@ -126,19 +126,104 @@ namespace Addon.Core.Services
         {
             AddonDBContext context = new AddonDBContext();
             List<CNavigation> result = new List<CNavigation>();
-            result = (from i in context.CNavigations
-                      where (i.IsPermission.Contains(PermissionName)) && (i.ChildLevel == 0)
-                      select i).ToList();
+            List<CNavigation> getSubMenu = new List<CNavigation>();
+            List<CNavigation> getChildrenMenu = new List<CNavigation>();
+            JObject res = new JObject();
+            ProcessJson jsonConvert = new ProcessJson();
+            PermissionName = "ISSUE";
+
+            // Tìm Menu tổng
+            var callMenu = (from i in context.CNavigations
+                            where
+                            (
+                              i.IsPermission.ToUpper().Contains(PermissionName) && string.IsNullOrEmpty(i.ParentGroup)
+                            )
+                            select new
+                            {
+                                NavId = i.NavId,
+                                IdPage = i.IdPage,
+                                NavName = i.NavName,
+                                NavUrl = i.NavUrl,
+                                IconName = i.IconName,
+                                IconStyle = i.IconStyle
+                            }).ToList();
+
+            result = callMenu.Select(i => new CNavigation
+            {
+                NavId = i.NavId,
+                IdPage = i.IdPage,
+                NavName = i.NavName,
+                NavUrl = i.NavUrl,
+                IconName = i.IconName,
+                IconStyle = i.IconStyle
+            }).ToList();
 
             var getMenu = result.Select(o => new NavigationModel
             {
+                IdPage = o.IdPage,
                 NavName = o.NavName,
                 NavUrl = o.NavUrl,
-                ParentLevel = o.ParentLevel,
-                ChildLevel  = o.ChildLevel,
-            }).OrderByDescending(x => x.ParentLevel).ThenBy(x => x.ChildLevel)
+                IconName = o.IconName,
+                IconStyle = o.IconStyle
+            }).OrderBy(x => x.ParentLevel).ThenBy(x => x.ChildLevel)
             .ToList();
-            //var getSubMenu 
+
+            if (result.Count > 0)
+            {
+                foreach (var pair in result)
+                {
+                    var callSubMenu =                         
+                        (from i in context.CNavigations
+                                  where (i.ParentGroup.Contains(pair.NavId.ToString()))
+                                  select new
+                                  {
+                                      NavId = i.NavId,
+                                      IdPage = i.IdPage,
+                                      NavName = i.NavName,
+                                      NavUrl = i.NavUrl
+                                  }).ToList();
+
+                    getSubMenu = callSubMenu.Select(i => new CNavigation
+                    {
+                        NavId = i.NavId,
+                        IdPage = i.IdPage,
+                        NavName = i.NavName,
+                        NavUrl = i.NavUrl
+                    }).ToList();
+
+
+                    
+                    if (getSubMenu.Count > 0)
+                    {
+                        foreach (var childrenMenu in getSubMenu)
+                        {
+                         var   callChildrenMenu = (from i in context.CNavigations
+                                          where i.ParentGroup.Contains(childrenMenu.NavId.ToString())
+                                                   select new
+                                                   {
+                                                       NavId = i.NavId,
+                                                       IdPage = i.IdPage,
+                                                       NavName = i.NavName,
+                                                       NavUrl = i.NavUrl
+                                                   }).ToList();
+
+                            getChildrenMenu = callChildrenMenu.Select(i => new CNavigation
+                            {
+                                NavId = i.NavId,
+                                IdPage = i.IdPage,
+                                NavName = i.NavName,
+                                NavUrl = i.NavUrl
+                            }).ToList();
+                        }
+                    }
+                }
+            }
+            JObject responsesss = new JObject()
+            {
+                ["Mess"] = "Thành công",
+                ["data"] = JArray.FromObject(res)
+            };
+            var a = responsesss;
             return getMenu;
         }
     }
