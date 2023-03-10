@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Addon.Core.ConnectProcess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -37,8 +38,7 @@ namespace Addon.Core.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=115.146.126.196,1444\\\\\\\\SQLExpress;Initial Catalog=AddonDB;User ID=sa;Password=9Gs3#fcJl&4O; MultipleActiveResultSets=True; Max Pool Size = 1024; Connect Timeout = 60");
+                optionsBuilder.UseSqlServer(ConnectString.Connect);
             }
         }
 
@@ -89,6 +89,14 @@ namespace Addon.Core.Entities
                 entity.Property(e => e.NavId)
                     .ValueGeneratedNever()
                     .HasColumnName("NavID");
+
+                entity.Property(e => e.IconName).HasMaxLength(250);
+
+                entity.Property(e => e.IconStyle).HasMaxLength(250);
+
+                entity.Property(e => e.IdPage).HasMaxLength(250);
+
+                entity.Property(e => e.IsPermission).HasMaxLength(250);
 
                 entity.Property(e => e.NavCode)
                     .HasMaxLength(20)

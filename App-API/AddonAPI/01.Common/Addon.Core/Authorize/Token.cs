@@ -23,7 +23,7 @@ namespace Addon.Core.Authorize
                 Subject = new ClaimsIdentity(new[] {
                       new Claim("UserData", JsonConvert.SerializeObject(data.User)),
                       new Claim("PartnerData", JsonConvert.SerializeObject(data.Partner))}),
-                Expires = DateTime.UtcNow.AddMinutes(10),
+                Expires = DateTime.UtcNow.AddMinutes(90),
                 SigningCredentials = new SigningCredentials(securityKey,
                 SecurityAlgorithms.HmacSha256Signature)
             };
