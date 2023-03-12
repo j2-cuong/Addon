@@ -7,6 +7,9 @@ import { TAuthenticationPayload } from '@/types/authentication';
 import { Observer } from 'mobx-react-lite';
 import { useStore } from '@/store';
 import { getPath } from '@/router-paths';
+import axios from 'axios'
+import { KEY_API_FAIL, MESSAGE_MODAL_VI } from '@/constants/constants';
+import {config, ENDPOINT} from '@/config'
 
 const LoginForm = () => {
   const { commonStore } = useStore();
@@ -15,9 +18,18 @@ const LoginForm = () => {
 
   const handleLogin = useCallback((payload: TAuthenticationPayload) => {
     console.log(payload);
-    localStorage.setItem('jwt', 'ahihi token test thoi');
-    history.push(getPath('dashboard'));
-    void message.success('Đăng nhập thành công');
+    axios.post(config.apiUrl + ENDPOINT.LOGIN,payload).then((response) => {
+      if(response?.data && response.data.status === KEY_API_FAIL) {
+        void message.error(MESSAGE_MODAL_VI.LOGIN_FAIL)
+        return;
+      }
+      localStorage.setItem('jwt', response.data.token);
+      history.push(getPath('dashboard'));
+      void message.success(MESSAGE_MODAL_VI.LOGIN_SUCCESS);
+    }).catch((error) => {
+      
+    })
+    
   }, [history]);
 
   return (
@@ -58,10 +70,10 @@ const LoginForm = () => {
               <Input.Password/>
             </Form.Item>
 
-            <FormRow>
+            {/* <FormRow>
               <Checkbox>Ghi nhớ đăng nhập</Checkbox>
               <Link to={''} style={{ color: appTheme }}>Quên mật khẩu</Link>
-            </FormRow>
+            </FormRow> */}
 
             <Form.Item>
               <Button block type={'primary'} htmlType={'submit'}>

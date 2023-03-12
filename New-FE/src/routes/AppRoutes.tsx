@@ -7,6 +7,7 @@ import LoginPage from '@pages/LoginPage';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { message } from 'antd';
 import ProtectedRoute from '@routes/ProtectedRoute';
+import { MESSAGE_MODAL_VI } from '@/constants/constants';
 
 const history = createBrowserHistory();
 const MainRoutes = lazy(() => import('@routes/MainRoutes'));
@@ -31,6 +32,10 @@ axios.interceptors.response.use(
       void message.error('Request timeout!');
       history.push(getPath('login'));
     }
+    if (response?.status === 404 || code === 'ERR_BAD_REQUEST'){
+      history.push(getPath('notfound'));
+      void message.error(MESSAGE_MODAL_VI.PAGE_NOT_FOUND)
+    }
     return Promise.reject(error);
   },
 );
@@ -41,6 +46,7 @@ const AppRoutes: FC = () => {
       <Switch>
         <Route exact path={getPath('login')} component={LoginPage} />
         <ProtectedRoute exact path={privatePaths} component={MainRoutes} />
+        <Route path={getPath('notfound')} component={NotFoundPage}/>
         <Route path={'*'} component={NotFoundPage} />
       </Switch>
     </Router>

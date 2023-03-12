@@ -1,7 +1,9 @@
-const config = {
+export const config = {
   mode: process.env.NODE_ENV || 'development',
-  appName: process.env.REACT_APP_NAME || '787 Manager',
+  appName: process.env.REACT_APP_NAME || 'METATRIP',
   apiUrl: process.env.REACT_APP_API_URL,
-};
+} as const
 
-export default config;
+export const ENDPOINT = {
+  LOGIN: '/CreateKeyLogin'
+} as const
