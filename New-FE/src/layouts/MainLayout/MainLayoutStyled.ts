@@ -5,14 +5,13 @@ export const MainLayoutWrapper = styled.div`
 `;
 export const MainSidebarWrapper = styled.aside`
   width: 280px;
-  background-color: #ffffff;
+  background-color: #0f172a;
   height: 100%;
   padding: 16px 0 24px;
   min-height: 100vh;
 `
 export const MainPageContentWrapper = styled.main`
   width: calc(100% - 280px);
-  color: #333;
 `
 export const LogoContainer = styled.figure`
   margin-bottom: 0;

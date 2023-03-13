@@ -104,7 +104,7 @@ const MainLayout: FC<PropsWithChildren> = ({ children }) => {
             placement={'bottomRight'}
             overlayClassName={'user-menu-dropdown'}
             trigger={['click']}
-          >chi
+          >
             <UserAvatarWrapper>
               <UserOutlined />
             </UserAvatarWrapper>

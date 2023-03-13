@@ -5,5 +5,5 @@ export const config = {
 } as const
 
 export const ENDPOINT = {
-  LOGIN: '/CreateKeyLogin'
+  LOGIN: '/Login/CreateKeyLogin'
 } as const

@@ -8,7 +8,7 @@ import { Observer } from 'mobx-react-lite';
 import { useStore } from '@/store';
 import { getPath } from '@/router-paths';
 import axios from 'axios'
-import { KEY_API_FAIL, MESSAGE_MODAL_VI } from '@/constants/constants';
+import { API_CODE_RESPONSE, MESSAGE_MODAL_VI } from '@/constants/constants';
 import {config, ENDPOINT} from '@/config'
 
 const LoginForm = () => {
@@ -18,18 +18,17 @@ const LoginForm = () => {
 
   const handleLogin = useCallback((payload: TAuthenticationPayload) => {
     console.log(payload);
-    axios.post(config.apiUrl + ENDPOINT.LOGIN,payload).then((response) => {
-      if(response?.data && response.data.status === KEY_API_FAIL) {
-        void message.error(MESSAGE_MODAL_VI.LOGIN_FAIL)
+    axios.post(config.apiUrl + ENDPOINT.LOGIN, payload, {headers: { 'Content-Type': 'application/json' }}).then((response) => {
+      if(response?.data && response.data.code === API_CODE_RESPONSE.LOGIN_NOT_FOUND) {
+        void message.error(MESSAGE_MODAL_VI.LOGIN_NOT_FOUND)
         return;
       }
-      localStorage.setItem('jwt', response.data.token);
+      localStorage.setItem('jwt', response.data.data);
       history.push(getPath('dashboard'));
       void message.success(MESSAGE_MODAL_VI.LOGIN_SUCCESS);
     }).catch((error) => {
-      
+      console.log(error)
     })
-    
   }, [history]);
 
   return (

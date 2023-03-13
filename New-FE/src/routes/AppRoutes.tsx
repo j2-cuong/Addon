@@ -46,7 +46,6 @@ const AppRoutes: FC = () => {
       <Switch>
         <Route exact path={getPath('login')} component={LoginPage} />
         <ProtectedRoute exact path={privatePaths} component={MainRoutes} />
-        <Route path={getPath('notfound')} component={NotFoundPage}/>
         <Route path={'*'} component={NotFoundPage} />
       </Switch>
     </Router>
