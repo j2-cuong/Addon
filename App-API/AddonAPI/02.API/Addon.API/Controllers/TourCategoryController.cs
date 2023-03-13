@@ -26,10 +26,28 @@ namespace Addon.API.Controllers
         }
 
         /// <summary>
-        /// 
+        /// SearchById.
         /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
+        /// <remarks>
+        /// Example: sử dụng Postman
+        /// 
+        /// METHOD : POST
+        /// 
+        /// I, Thẻ headers bao gồm : 
+        /// 
+        ///     "Authorization":"Bearer "+ Token lấy từ API login
+        /// II, Thẻ body - raw - đổi text thành Json
+        /// 
+        /// III, Json mẫu
+        /// 
+        ///     {
+        ///         "CategoryId":"DEMO"
+        ///     }
+        ///
+        /// IV, Note
+        /// 
+        /// 
+        /// </remarks>
         [HttpPost]
         [Authorize]
         [Route("SearchById")]
@@ -39,10 +57,28 @@ namespace Addon.API.Controllers
         }
 
         /// <summary>
-        /// 
+        /// SearchByName.
         /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
+        /// <remarks>
+        /// Example: sử dụng Postman
+        /// 
+        /// METHOD : POST
+        /// 
+        /// I, Thẻ headers bao gồm : 
+        /// 
+        ///     "Authorization":"Bearer "+ Token lấy từ API login
+        /// II, Thẻ body - raw - đổi text thành Json
+        /// 
+        /// III, Json mẫu
+        /// 
+        ///     {
+        ///         "name":"DEMO"
+        ///     }
+        ///
+        /// IV, Note
+        /// 
+        /// 
+        /// </remarks>
         [HttpPost]
         [Authorize]
         [Route("SearchByName")]
@@ -52,10 +88,28 @@ namespace Addon.API.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Create.
         /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
+        /// <remarks>
+        /// Example: sử dụng Postman
+        /// 
+        /// METHOD : POST
+        /// 
+        /// I, Thẻ headers bao gồm : 
+        /// 
+        ///     "Authorization":"Bearer "+ Token lấy từ API login
+        /// II, Thẻ body - raw - đổi text thành Json
+        /// 
+        /// III, Json mẫu
+        /// 
+        ///     {
+        ///         "name":"DEMO"
+        ///     }
+        ///
+        /// IV, Note
+        /// 
+        /// 
+        /// </remarks>
         [HttpPost]
         [Authorize]
         [Route("Create")]
