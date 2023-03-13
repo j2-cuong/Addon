@@ -8,7 +8,7 @@ namespace Addon.Core.Entities
         public Guid ImageId { get; set; }
         public Guid? TourId { get; set; }
         public string? FileName { get; set; }
-        public Guid? CreatedBy { get; set; }
+        public string? CreatedBy { get; set; }
         public DateTime? CreatedTime { get; set; }
         public string? ImageType { get; set; }
     }
