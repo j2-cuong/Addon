@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Addon.Core.ConnectProcess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -38,7 +37,7 @@ namespace Addon.Core.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(ConnectString.Connect);
+                optionsBuilder.UseSqlServer("Data Source=115.146.126.196,1444\\\\\\\\SQLExpress;Initial Catalog=AddonDB;User ID=sa;Password=9Gs3#fcJl&4O; MultipleActiveResultSets=True; Max Pool Size = 1024; Connect Timeout = 60");
             }
         }
 
@@ -89,14 +88,6 @@ namespace Addon.Core.Entities
                 entity.Property(e => e.NavId)
                     .ValueGeneratedNever()
                     .HasColumnName("NavID");
-
-                entity.Property(e => e.IconName).HasMaxLength(250);
-
-                entity.Property(e => e.IconStyle).HasMaxLength(250);
-
-                entity.Property(e => e.IdPage).HasMaxLength(250);
-
-                entity.Property(e => e.IsPermission).HasMaxLength(250);
 
                 entity.Property(e => e.NavCode)
                     .HasMaxLength(20)

@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 =======
 ﻿using System.Text.Json.Serialization;
@@ -128,5 +129,35 @@ namespace AddOn.Models.Responses
     {
         public int code { get; set; }
         public string message { get; set; }
+    }
+
+
+    public class Response
+    {
+        public int Status { get; set; }
+
+        public string Message { get; set; }
+
+        public Response(int status, string message = null)
+        {
+            Status = status;
+            Message = message;
+        }
+    }
+    public class Response<T> : Response
+    {
+        public object Data { get; set; }
+        public string ID { get; set; }
+        public string Token { get; set; }
+
+
+        [JsonConstructor]
+        public Response(
+            int status, string message = null, object data = null, string token = null)
+            : base(status, message)
+        {
+            Data = data;
+            Token = token;
+        }
     }
 }
