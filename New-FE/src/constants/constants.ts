@@ -1,7 +1,12 @@
 export const API_CODE_RESPONSE = {
-    SUCCESS : "0",
     LOGIN_NOT_FOUND: "104"
-}
+} as const
+
+export const API_STATUS_RESPONSE = {
+    SUCCESS: 1,
+    FAIL: 2
+} as const
+
 export const MESSAGE_MODAL_VI = {
     //login message
     LOGIN_SUCCESS : 'Đăng nhập thành công!',
