@@ -16,8 +16,8 @@ export const MainPageContentWrapper = styled.main`
 export const LogoContainer = styled.figure`
   margin-bottom: 0;
   img {
-    width: 38px;
-    height: 32px;
+    width: 60px;
+    height: 35px;
     object-fit: cover;
     object-position: 0 0;
   }

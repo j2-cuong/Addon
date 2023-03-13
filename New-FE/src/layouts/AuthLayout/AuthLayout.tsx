@@ -1,20 +1,19 @@
 import React, { FC, PropsWithChildren, ReactNode } from 'react';
 import {
   AuthFormWrapper,
-  AuthLayoutWrapper, FormContent, FormHeading, FormSubHeading, LogoContainer,
-  WelcomeBanner,
-  WelcomeContent,
+  AuthLayoutWrapper, FormContent, FormHeading
+  // WelcomeBanner,
+  // WelcomeContent,
 } from '@layouts/AuthLayout/AuthLayoutStyled';
 import { Observer } from 'mobx-react-lite';
 import { useStore } from '@/store';
 
 type Props = PropsWithChildren & {
   title: string;
-  subTitle: ReactNode
 };
 
 /** Children should be raw AntD Form only */
-const AuthLayout: FC<Props> = ({ children, title, subTitle }) => {
+const AuthLayout: FC<Props> = ({ children, title }) => {
   const { commonStore } = useStore();
 
   return <Observer>
@@ -25,19 +24,13 @@ const AuthLayout: FC<Props> = ({ children, title, subTitle }) => {
         <AuthLayoutWrapper>
           <AuthFormWrapper>
             <FormContent>
-              <LogoContainer>
-                <img src={`${process.env.PUBLIC_URL}/assets/imgs/Logo.png`} alt='' />
-              </LogoContainer>
               <FormHeading>
                 {title}
               </FormHeading>
-              <FormSubHeading color={appTheme}>
-                {subTitle}
-              </FormSubHeading>
               {children}
             </FormContent>
           </AuthFormWrapper>
-          <WelcomeBanner>
+          {/* <WelcomeBanner>
             <svg className={'circle'} viewBox='0 0 960 540' width='100%' height='100%'
                  preserveAspectRatio='xMidYMax slice'
                  xmlns='http://www.w3.org/2000/svg'>
@@ -59,14 +52,14 @@ const AuthLayout: FC<Props> = ({ children, title, subTitle }) => {
 
             <WelcomeContent>
               <h2>
-                787 Manager App<br />
+                META App<br />
               </h2>
               <p>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
               </p>
             </WelcomeContent>
-          </WelcomeBanner>
+          </WelcomeBanner> */}
         </AuthLayoutWrapper>
       );
     }

@@ -7,7 +7,7 @@ import LoginPage from '@pages/LoginPage';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { message } from 'antd';
 import ProtectedRoute from '@routes/ProtectedRoute';
-import RegisterPage from '@pages/RegisterPage';
+import { MESSAGE_MODAL_VI } from '@/constants/constants';
 
 const history = createBrowserHistory();
 const MainRoutes = lazy(() => import('@routes/MainRoutes'));
@@ -32,6 +32,10 @@ axios.interceptors.response.use(
       void message.error('Request timeout!');
       history.push(getPath('login'));
     }
+    if (response?.status === 404 || code === 'ERR_BAD_REQUEST'){
+      history.push(getPath('notfound'));
+      void message.error(MESSAGE_MODAL_VI.PAGE_NOT_FOUND)
+    }
     return Promise.reject(error);
   },
 );
@@ -41,7 +45,6 @@ const AppRoutes: FC = () => {
     <Router history={history}>
       <Switch>
         <Route exact path={getPath('login')} component={LoginPage} />
-        <Route exact path={getPath('register')} component={RegisterPage} />
         <ProtectedRoute exact path={privatePaths} component={MainRoutes} />
         <Route path={'*'} component={NotFoundPage} />
       </Switch>

@@ -1,6 +1,7 @@
 const publicPathConfig = {
   login: () => '/auth/login',
-  register: () => '/auth/register',
+  // register: () => '/auth/register',
+  notfound: () => '/notfound',
 };
 
 const privatePathConfig = {
