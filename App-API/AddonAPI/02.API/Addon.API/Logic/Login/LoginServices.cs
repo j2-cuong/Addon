@@ -23,9 +23,9 @@ namespace Addon.Core.Services
         public async Task<Response<ResToken>> LoginEcoSvc(LoginEcoRequest request)
         {
 
-            request.PartnerCode = "DEMO";
-            request.UserName = "booker";
-            request.Password = "123456@@";
+            //request.PartnerCode = "DEMO";
+            //request.UserName = "booker";
+            //request.Password = "123456@@";
 
 
 
@@ -218,12 +218,12 @@ namespace Addon.Core.Services
                     }
                 }
             }
-            JObject responsesss = new JObject()
-            {
-                ["Mess"] = "Thành công",
-                ["data"] = JArray.FromObject(res)
-            };
-            var a = responsesss;
+            //JObject responsesss = new JObject()
+            //{
+            //    ["Mess"] = "Thành công",
+            //    ["data"] = JArray.FromObject(res)
+            //};
+            var a = result;
             return getMenu;
         }
     }
