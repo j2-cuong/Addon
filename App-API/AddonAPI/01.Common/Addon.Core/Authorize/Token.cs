@@ -57,7 +57,7 @@ namespace Addon.Core.Authorize
                 return null;
             }
         }
-        public static string? ValidateToken(string token)
+        public static LoginModels._data? ValidateToken(string token)
         {
             string? username = null;
             ClaimsPrincipal principal = GetPrincipal(token);
@@ -72,9 +72,12 @@ namespace Addon.Core.Authorize
             {
                 return null;
             }
-            Claim? usernameClaim = identity?.FindFirst(ClaimTypes.Name);
-            username = usernameClaim?.Value;
-            return username;
+            string PartnerData = identity?.FindFirst("PartnerData").Value;
+            string UserData = identity?.FindFirst("UserData").Value;
+            LoginModels._data res = new LoginModels._data();
+            res.Partner = JsonConvert.DeserializeObject<_partner>(PartnerData);
+            res.User = JsonConvert.DeserializeObject<_user>(UserData);
+            return res;
         }
     }
 }
