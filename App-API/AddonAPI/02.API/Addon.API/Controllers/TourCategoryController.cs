@@ -41,7 +41,7 @@ namespace Addon.API.Controllers
         /// III, Json mẫu
         /// 
         ///     {
-        ///         "CategoryId":"DEMO"
+        ///         "CategoryId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"
         ///     }
         ///
         /// IV, Note
@@ -103,14 +103,16 @@ namespace Addon.API.Controllers
         /// III, Json mẫu
         /// 
         ///     {
-        ///         "name":"DEMO"
+        ///         "categoryId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        ///         "categoryCode": "string",
+        ///         "categoryName": "string"
         ///     }
         ///
         /// IV, Note
         /// 
         /// 
         /// </remarks>
-        [HttpPost]
+    [HttpPost]
         [Authorize]
         [Route("Create")]
         public CommonResponse<CTourCategory> Create(CTourCategory request)
@@ -119,10 +121,29 @@ namespace Addon.API.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Update.
         /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
+        /// <remarks>
+        /// Example: sử dụng Postman
+        /// 
+        /// METHOD : POST
+        /// 
+        /// I, Thẻ headers bao gồm : 
+        /// 
+        /// II, Thẻ body - raw - đổi text thành Json
+        /// 
+        /// III, Json mẫu
+        /// 
+        ///     {
+        ///         "categoryId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        ///         "categoryCode": "string",
+        ///         "categoryName": "string"
+        ///     }
+        ///
+        /// IV, Note
+        /// 
+        /// 
+        /// </remarks>
         [HttpPost]
         [Authorize]
         [Route("Update")]
@@ -132,10 +153,28 @@ namespace Addon.API.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Delete.
         /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
+        /// <remarks>
+        /// Example: sử dụng Postman
+        /// 
+        /// METHOD : POST
+        /// 
+        /// I, Thẻ headers bao gồm : 
+        /// 
+        ///     "Authorization":"Bearer "+ Token lấy từ API login
+        /// II, Thẻ body - raw - đổi text thành Json
+        /// 
+        /// III, Json mẫu
+        /// 
+        ///     {
+        ///         "CategoryId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"
+        ///     }
+        ///
+        /// IV, Note
+        /// 
+        /// 
+        /// </remarks>
         [HttpPost]
         [Authorize]
         [Route("Delete")]
