@@ -23,4 +23,8 @@
     <ProjectReference Include="..\..\AddOn.Models\AddOn.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

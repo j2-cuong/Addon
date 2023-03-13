@@ -75,7 +75,7 @@ namespace Addon.Core.Services
                     res = StaticResult.Success<string>(JRes.Data);
                     break;
                 default:
-                    res = StaticResult.Error<string>(JRes.Message, JRes.Code);
+                    res = StaticResult.Error<string>(JRes.Message, int.Parse(JRes.Code));
                     break;
             }
             return res;
@@ -99,7 +99,7 @@ namespace Addon.Core.Services
                     res = StaticResult.Success<ResToken>(resData);
                     break;
                 default:
-                    res = StaticResult.Error<ResToken>(JRes.Message, JRes.Code);
+                    res = StaticResult.Error<ResToken>(JRes.Message, int.Parse(JRes.Code));
                     break;
             }
             return res;
@@ -116,7 +116,7 @@ namespace Addon.Core.Services
                     res = StaticResult.Success<GetDeposit._data>(JRes.Data);
                     break;
                 default:
-                    res = StaticResult.Error<GetDeposit._data>(JRes.Message, JRes.Code);
+                    res = StaticResult.Error<GetDeposit._data>(JRes.Message, int.Parse(JRes.Code));
                     break;
             }
             return res;
