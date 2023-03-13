@@ -120,6 +120,8 @@ namespace AddOn.Models.Responses
         public int code { get; set; }
         public string message { get; set; }
         public T Data { get; set; }
+        public object ListData { get; set; }
+
     }
     public class CommonResponse
     {

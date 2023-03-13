@@ -14,53 +14,138 @@ using System.Linq;
 using System.Collections;
 using System.Text.Json.Nodes;
 using static Addon.Core.PermissionMode;
+using System.Diagnostics.Metrics;
 
 namespace Addon.Core.Services
 {
     public class LoginServices : ILoginServices
     {
+        private readonly ILogger<LoginServices> _logger;
+        public LoginServices(ILogger<LoginServices> logger)
+        {
+            _logger = logger;
+        }
         ApiBase apiBase = new ApiBase();
         public async Task<Response<ResToken>> LoginEcoSvc(LoginEcoRequest request)
         {
 
-            //request.PartnerCode = "DEMO";
-            //request.UserName = "booker";
-            //request.Password = "123456@@";
-
-
-
-            //request.PartnerCode = "DEMO";
-            //request.UserName = "huynguyen";
-            //request.Password = "Huy@@789##";
-
-            HttpResponseMessage resMsg = await apiBase._postAsync(request, "Authentication");
-            string DataStr = resMsg.Content.ReadAsStringAsync().Result;
-            LoginModels JRes = JsonConvert.DeserializeObject<LoginModels>(DataStr);
-
-            JObject jObject = JObject.Parse(DataStr);
-            var UserRole = (string)jObject["Data"]["User"]["UserRole"];
-            ProcessJson json = new ProcessJson();
-            switch (JRes.Code)
+            try
             {
-                case "0":
-                    var getPermission = GetNav(UserRole);
-                    string token = new Token().GenerateToken(JRes.Data);
-                    var res = new Response<ResToken>(
-                        1,
-                        "Thành Công",
-                        getPermission,
-                        token
-                    ); 
-                    
-                    return res;
-                    break;
-                default:
-                    return new Response<ResToken>(
-                        2,
-                        "Thất bại"
-                    );
-                    break;
+                //request.PartnerCode = "DEMO";
+                //request.UserName = "huynguyen";
+                //request.Password = "Huy@@789##";
+
+                HttpResponseMessage resMsg = await apiBase._postAsync(request, "Authentication");
+                string DataStr = resMsg.Content.ReadAsStringAsync().Result;
+                LoginModels JRes = JsonConvert.DeserializeObject<LoginModels>(DataStr);
+
+                JObject jObject = JObject.Parse(DataStr);
+                ProcessJson json = new ProcessJson();
+                switch (JRes.Code)
+                {
+                    case "0":
+                        var UserRole = (string)jObject["Data"]["User"]["UserRole"];
+                        var getPermission = GetNav(UserRole);
+                        string token = new Token().GenerateToken(JRes.Data);
+                        var res = new Response<ResToken>(
+                            1,
+                            "Thành Công",
+                            getPermission,
+                            token
+                        );
+
+                        return res;
+                        break;
+                    default:
+                        _logger.LogCritical
+                                   (
+                                       $@"*------ StartRequest ------*" + "\r" +
+                                       $@"      Controller : LoginEcoSvc      " + "\r" +
+                                       $@"      Thông báo: {jObject}      " + "\r\r" +
+                                       $@"      Eco res: {DataStr}      " + "\r\r" +
+                                       $@"*------ EndRequest ------*" + "\r\r"
+                                   );
+                        return new Response<ResToken>(
+                            2,
+                            "Thất bại",
+                            JRes
+                        );
+                        break;
+                }
+            } catch (Exception ex)
+            {
+                _logger.LogCritical
+                                    (
+                                        $@"*------ StartRequest ------*" + "\r" +
+                                        $@"      Controller : LoginEcoSvc      " + "\r" +
+                                        $@"      Thông báo: {ex.Message}      " + "\r\r" +
+                                        $@"*------ EndRequest ------*" + "\r\r"
+                                    );
+                return new Response<ResToken>(
+                            2,
+                            "Thất bại"
+                        );
             }
+        }
+
+
+        public async Task<Response<ResToken>> LoginWithParamEco(LoginEcoRequest request)
+        {
+
+            try
+            {
+                HttpResponseMessage resMsg = await apiBase._postAsync(request, "Authentication");
+                string DataStr = resMsg.Content.ReadAsStringAsync().Result;
+                LoginModels JRes = JsonConvert.DeserializeObject<LoginModels>(DataStr);
+
+                JObject jObject = JObject.Parse(DataStr);
+                ProcessJson json = new ProcessJson();
+                switch (JRes.Code)
+                {
+                    case "0":
+                        var UserRole = (string)jObject["Data"]["User"]["UserRole"];
+                        var getPermission = GetNav(UserRole);
+                        string token = new Token().GenerateToken(JRes.Data);
+                        var res = new Response<ResToken>(
+                            1,
+                            "Thành Công",
+                            getPermission,
+                            token
+                        );
+
+                        return res;
+                        break;
+                    default:
+                        _logger.LogCritical
+                                   (
+                                       $@"*------ StartRequest ------*" + "\r" +
+                                       $@"      Controller : LoginEcoSvc      " + "\r" +
+                                       $@"      Thông báo: {jObject}      " + "\r\r" +
+                                       $@"      Eco res: {DataStr}      " + "\r\r" +
+                                       $@"*------ EndRequest ------*" + "\r\r"
+                                   );
+                        return new Response<ResToken>(
+                            2,
+                            "Thất bại"
+                        );
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical
+                                    (
+                                        $@"*------ StartRequest ------*" + "\r" +
+                                        $@"      Controller : LoginEcoSvc      " + "\r" +
+                                        $@"      Thông báo: {ex.Message}      " + "\r\r" +
+                                        $@"*------ EndRequest ------*" + "\r\r"
+                                    );
+                return new Response<ResToken>(
+                            2,
+                            "Thất bại"
+                        );
+            }
+
         }
 
         public async Task<CommonResponse<string>> CreateKeyLogin(LoginEcoRequest request)
@@ -122,7 +207,7 @@ namespace Addon.Core.Services
             return res;
         }
 
-        public List<NavigationModel> GetNav(string PermissionName)
+        public List<CNavigation> GetNav(string PermissionName)
         {
             AddonDBContext context = new AddonDBContext();
             List<CNavigation> result = new List<CNavigation>();
@@ -130,7 +215,6 @@ namespace Addon.Core.Services
             List<CNavigation> getChildrenMenu = new List<CNavigation>();
             JObject res = new JObject();
             ProcessJson jsonConvert = new ProcessJson();
-            PermissionName = "ISSUE";
 
             // Tìm Menu tổng
             var callMenu = (from i in context.CNavigations
@@ -224,7 +308,7 @@ namespace Addon.Core.Services
             //    ["data"] = JArray.FromObject(res)
             //};
             var a = result;
-            return getMenu;
+            return result;
         }
     }
 }
