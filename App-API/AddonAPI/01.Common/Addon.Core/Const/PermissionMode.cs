@@ -12,6 +12,8 @@ namespace Addon.Core
         public partial class NavigationModel
         {
             [JsonIgnore]
+            public Guid? NavId { get; set; }
+            [JsonIgnore]
             public string NavName { get; set; } = null!;
             [JsonIgnore]
             public string NavUrl { get; set; } = null!;

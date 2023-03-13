@@ -15,6 +15,8 @@ using System.Collections;
 using System.Text.Json.Nodes;
 using static Addon.Core.PermissionMode;
 using System.Diagnostics.Metrics;
+using Addon.Core.Model;
+using Addon.Core.Utils;
 
 namespace Addon.Core.Services
 {
@@ -31,9 +33,9 @@ namespace Addon.Core.Services
 
             try
             {
-                //request.PartnerCode = "DEMO";
-                //request.UserName = "huynguyen";
-                //request.Password = "Huy@@789##";
+                request.PartnerCode = "DEMO";
+                request.UserName = "huynguyen";
+                request.Password = "Huy@@789##";
 
                 HttpResponseMessage resMsg = await apiBase._postAsync(request, "Authentication");
                 string DataStr = resMsg.Content.ReadAsStringAsync().Result;
@@ -76,7 +78,7 @@ namespace Addon.Core.Services
             {
                 _logger.LogCritical
                                     (
-                                        $@"*------ StartRequest ------*" + "\r" +
+                                        $@"*------ StartRequest 'Data is Null------*" + "\r" +
                                         $@"      Controller : LoginEcoSvc      " + "\r" +
                                         $@"      Thông báo: {ex.Message}      " + "\r\r" +
                                         $@"*------ EndRequest ------*" + "\r\r"
@@ -207,106 +209,53 @@ namespace Addon.Core.Services
             return res;
         }
 
-        public List<CNavigation> GetNav(string PermissionName)
+        public List<NavModel> GetNav(string PermissionName)
         {
             AddonDBContext context = new AddonDBContext();
-            List<CNavigation> result = new List<CNavigation>();
-            List<CNavigation> getSubMenu = new List<CNavigation>();
-            List<CNavigation> getChildrenMenu = new List<CNavigation>();
+            List<NavModel> result = new List<NavModel>();
+            List<NavModel> getSubMenu = new List<NavModel>();
+            List<NavModel> getChildrenMenu = new List<NavModel>();
             JObject res = new JObject();
             ProcessJson jsonConvert = new ProcessJson();
 
+            PermissionName = "Booking";
+            var ParentGroup = "a83e1897-d64e-477f-900b-424d6948f6cc";
             // Tìm Menu tổng
             var callMenu = (from i in context.CNavigations
                             where
                             (
-                              i.IsPermission.ToUpper().Contains(PermissionName) && string.IsNullOrEmpty(i.ParentGroup)
+                              i.IsPermission.ToUpper().Contains(PermissionName) && (string.IsNullOrEmpty(i.ParentGroup) || (!string.IsNullOrEmpty(i.ParentGroup) && i.ParentGroup.Contains("test")))
                             )
-                            select new
-                            {
-                                NavId = i.NavId,
-                                IdPage = i.IdPage,
-                                NavName = i.NavName,
-                                NavUrl = i.NavUrl,
-                                IconName = i.IconName,
-                                IconStyle = i.IconStyle
-                            }).ToList();
+                            select i).ToList();
 
-            result = callMenu.Select(i => new CNavigation
-            {
-                NavId = i.NavId,
-                IdPage = i.IdPage,
-                NavName = i.NavName,
-                NavUrl = i.NavUrl,
-                IconName = i.IconName,
-                IconStyle = i.IconStyle
-            }).ToList();
-
-            var getMenu = result.Select(o => new NavigationModel
-            {
-                IdPage = o.IdPage,
-                NavName = o.NavName,
-                NavUrl = o.NavUrl,
-                IconName = o.IconName,
-                IconStyle = o.IconStyle
-            }).OrderBy(x => x.ParentLevel).ThenBy(x => x.ChildLevel)
-            .ToList();
+            result = AutoMapperConfig.AutoMap<CNavigation, NavModel>(callMenu);
 
             if (result.Count > 0)
             {
                 foreach (var pair in result)
                 {
-                    var callSubMenu =                         
-                        (from i in context.CNavigations
-                                  where (i.ParentGroup.Contains(pair.NavId.ToString()))
-                                  select new
-                                  {
-                                      NavId = i.NavId,
-                                      IdPage = i.IdPage,
-                                      NavName = i.NavName,
-                                      NavUrl = i.NavUrl
-                                  }).ToList();
+                   
+                   // menu cấp 1
+                   var callSubMenu = context.CNavigations.Where(x => (!string.IsNullOrEmpty(x.ParentGroup) && pair.NavId.ToString().ToUpper().Equals(x.ParentGroup))).ToList();
 
-                    getSubMenu = callSubMenu.Select(i => new CNavigation
-                    {
-                        NavId = i.NavId,
-                        IdPage = i.IdPage,
-                        NavName = i.NavName,
-                        NavUrl = i.NavUrl
-                    }).ToList();
+                   pair.Children = AutoMapperConfig.AutoMap<CNavigation, NavModel>(callSubMenu);
 
+                   if (pair.Children != null)
+                   {
+                       foreach (var childrenMenu in pair.Children)
+                       {
+                           if (!String.IsNullOrEmpty(childrenMenu.ParentGroup))
+                           {
+                                // menu cấp 2
+                                var callChildrenMenu = context.CNavigations.Where(x => (!string.IsNullOrEmpty(x.ParentGroup) && childrenMenu.NavId.ToString().ToUpper().Equals(x.ParentGroup))).ToList();
 
+                               childrenMenu.Children = AutoMapperConfig.AutoMap<CNavigation, NavModel>(callChildrenMenu);
+                           }
+                       }
+                   }
                     
-                    if (getSubMenu.Count > 0)
-                    {
-                        foreach (var childrenMenu in getSubMenu)
-                        {
-                         var   callChildrenMenu = (from i in context.CNavigations
-                                          where i.ParentGroup.Contains(childrenMenu.NavId.ToString())
-                                                   select new
-                                                   {
-                                                       NavId = i.NavId,
-                                                       IdPage = i.IdPage,
-                                                       NavName = i.NavName,
-                                                       NavUrl = i.NavUrl
-                                                   }).ToList();
-
-                            getChildrenMenu = callChildrenMenu.Select(i => new CNavigation
-                            {
-                                NavId = i.NavId,
-                                IdPage = i.IdPage,
-                                NavName = i.NavName,
-                                NavUrl = i.NavUrl
-                            }).ToList();
-                        }
-                    }
                 }
             }
-            //JObject responsesss = new JObject()
-            //{
-            //    ["Mess"] = "Thành công",
-            //    ["data"] = JArray.FromObject(res)
-            //};
             var a = result;
             return result;
         }
