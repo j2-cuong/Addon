@@ -66,28 +66,27 @@ const MainLayout: FC<PropsWithChildren> = ({ children }) => {
   };
 
   const items: MenuProps['items'] = [
-    getItem('Chăm sóc khách hàng', 'cham_soc_khach_hang', <TeamOutlined />, [
-      getItem('Quản lý đặt chỗ', 'quan_ly_dat_cho'),
-      getItem('Xuất vé', 'xuat_ve'),
+    getItem('Tour', 'tour', <TeamOutlined />, [
+      getItem('Danh sách Tour', 'danh_sach_tour'),
+      getItem('Tìm kiếm Tour', 'tim_kiem_tour'),
+      getItem('Tạo Tour', 'tao_tour'),
+      getItem('Sửa Tour', 'sua_tour'),
+      getItem('Xóa Tour', 'xoa_tour'),
+      getItem('Duyệt Tour', 'duyet_tour'),
     ]),
-    getItem('Sales', 'sales', <ShoppingCartOutlined />, [
-      getItem('Quản lý nhóm', 'quan_ly_nhom'),
-      getItem('Quản lý thành viên', 'quan_ly_thanh_vien'),
-      getItem('Quản lý coupon', 'quan_ly_coupon'),
-      getItem('Gửi email', 'email'),
+    getItem('Bookings', 'sales', <ShoppingCartOutlined />, [
+      getItem('Quản lý Booking', 'quan_ly_booking'),
+      getItem('Đặt Booking tour', 'dat_booking_tour'),
+      getItem('Thay đổi trạng thái Booking', 'thay_doi_trang_thai_booking'),
+      getItem('Thanh toán Booking', 'thanh_toan_booking'),
     ]),
     getItem('Báo cáo', 'bao_cao', <BarChartOutlined />, [
-      getItem('Danh sách đặt chỗ', 'danh_sach_dat_cho'),
-      getItem('Báo cáo cổng thanh toán', 'bao_cao_cong_thanh_toan'),
-      getItem('Báo cáo hạn mức nhân viên', 'bao_cao_han_muc_nhan_vien'),
-      getItem('Lịch sử xuất vé', 'lich_su_xuat_ve'),
+      getItem('Quản lý báo cáo thanh toán', 'quan_ly_bao_cao_thanh_toan'),
     ]),
-    getItem('Quản trị', 'quan_tri', <ControlOutlined />, [
-      getItem('Quản lý tài khoản nhân viên', 'quan_ly_tai_khoan_nhan_vien'),
-      getItem('Quản lý hạn mức nhân viên', 'quan_ly_han_muc_nhan_vien'),
-      getItem('Quản lý phí dịch vụ', 'quan_ly_phi_dich_vu'),
-      getItem('Quản lý tính điểm', 'quan_ly_tinh_diem'),
-      getItem('Quản lý đổi điểm', 'quan_ly_doi_diem'),
+    getItem('Cấu hình', 'quan_tri', <ControlOutlined />, [
+      getItem('Cấu hình danh mục Tour', 'cau_hinh_danh_muc_tour'),
+      getItem('Cấu hình chiết khấu', 'cau_hinh_chiet_khau'),
+      getItem('Cấu hình lưu ý', 'cau_hinh_luu_y'),
     ]),
     getItem('Cài đặt', 'cai_dat', <SettingOutlined />),
   ];

@@ -1,7 +1,8 @@
-﻿using Addon.Core.Common;
-using Addon.Core.Entities;
 ﻿using Addon.Core.Authorize;
+using Addon.Core.Common;
+using Addon.Core.Entities;
 using Addon.Core.Interfaces;
+using Addon.DataProcess.DataProcess;
 using AddOn.Models.Requests;
 using AddOn.Models.ResData;
 using AddOn.Models.Responses;
@@ -9,6 +10,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Data;
+<<<<<<< HEAD
 using Addon.DataProcess.DataProcess;
 using System.Linq;
 using System.Collections;
@@ -17,6 +19,10 @@ using static Addon.Core.PermissionMode;
 using System.Diagnostics.Metrics;
 using Addon.Core.Model;
 using Addon.Core.Utils;
+=======
+using static Addon.Core.Const.PermissionMode;
+using static AddOn.Models.Responses.StaticResult;
+>>>>>>> d7c6d1aabb3501dca39de6724013dd35f2e89b2c
 
 namespace Addon.Core.Services
 {
@@ -28,8 +34,9 @@ namespace Addon.Core.Services
             _logger = logger;
         }
         ApiBase apiBase = new ApiBase();
-        public async Task<Response<ResToken>> LoginEcoSvc(LoginEcoRequest request)
+        public async Task<LoginResponse<List<NavigationModel>>> LoginEcoSvc(LoginEcoRequest request)
         {
+<<<<<<< HEAD
 
             try
             {
@@ -87,7 +94,43 @@ namespace Addon.Core.Services
                             2,
                             "Thất bại"
                         );
+=======
+
+            //request.PartnerCode = "DEMO";
+            //request.UserName = "accounting";
+            //request.Password = "123456@@";
+
+
+
+            //request.PartnerCode = "DEMO";
+            //request.UserName = "huynguyen";
+            //request.Password = "Huy@@789##";
+
+            HttpResponseMessage resMsg = await apiBase._postAsync(request, "Authentication");
+            string DataStr = resMsg.Content.ReadAsStringAsync().Result;
+            LoginModels JRes = JsonConvert.DeserializeObject<LoginModels>(DataStr);
+
+            JObject jObject = JObject.Parse(DataStr);
+            var UserRole = (string)jObject["Data"]["User"]["UserRole"];
+            ProcessJson json = new ProcessJson();
+            LoginResponse<List<NavigationModel>> res = new LoginResponse<List<NavigationModel>>();
+            switch (JRes.Code)
+            {
+                case "0":
+                    var getPermission = GetNav(UserRole);
+                    string token = new Token().GenerateToken(JRes.Data);
+                    res = StaticResult.SuccessLogin<List<NavigationModel>>(getPermission, token);
+                    break;
+                default:
+                    res = new LoginResponse<List<NavigationModel>>
+                    {
+                        code = (int)ErrorCode.SysErr,
+                        message = JRes.Message
+                    };
+                    break;
+>>>>>>> d7c6d1aabb3501dca39de6724013dd35f2e89b2c
             }
+            return res;
         }
 
 
@@ -232,6 +275,7 @@ namespace Addon.Core.Services
 
             if (result.Count > 0)
             {
+<<<<<<< HEAD
                 foreach (var pair in result)
                 {
                    
@@ -258,6 +302,16 @@ namespace Addon.Core.Services
             }
             var a = result;
             return result;
+=======
+                NavName = o.NavName,
+                NavUrl = o.NavUrl,
+                ParentLevel = (int)o.ParentLevel,
+                ChildLevel = (int)o.ChildLevel,
+            }).OrderByDescending(x => x.ParentLevel).ThenBy(x => x.ChildLevel)
+            .ToList();
+            //var getSubMenu 
+            return getMenu;
+>>>>>>> d7c6d1aabb3501dca39de6724013dd35f2e89b2c
         }
     }
 }

@@ -5,6 +5,7 @@ using AddOn.Models.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static Addon.Core.Const.PermissionMode;
 
 namespace Addon.API.Controllers
 {
@@ -45,7 +46,7 @@ namespace Addon.API.Controllers
         /// </remarks>
         [Route("LoginEco")]
         [HttpPost]
-        public async Task<Response<ResToken>> LoginEco(LoginEcoRequest request)
+        public async Task<LoginResponse<List<NavigationModel>>> LoginEco(LoginEcoRequest request)
         {
             return await svc.LoginEcoSvc(request);
         }

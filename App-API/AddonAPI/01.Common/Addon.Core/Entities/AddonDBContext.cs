@@ -90,12 +90,22 @@ namespace Addon.Core.Entities
                     .ValueGeneratedNever()
                     .HasColumnName("NavID");
 
+                entity.Property(e => e.IconName).HasMaxLength(250);
+
+                entity.Property(e => e.IconStyle).HasMaxLength(250);
+
+                entity.Property(e => e.IdPage).HasMaxLength(250);
+
+                entity.Property(e => e.IsPermission).HasMaxLength(250);
+
                 entity.Property(e => e.NavCode)
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .IsFixedLength();
 
                 entity.Property(e => e.NavName).HasMaxLength(50);
+
+                entity.Property(e => e.ParentGroup).HasMaxLength(50);
             });
 
             modelBuilder.Entity<CTourCategory>(entity =>
@@ -252,6 +262,8 @@ namespace Addon.Core.Entities
                     .HasColumnType("decimal(21, 6)")
                     .HasColumnName("CHDPrice");
 
+                entity.Property(e => e.CreatedBy).HasMaxLength(10);
+
                 entity.Property(e => e.CreatedTime).HasColumnType("datetime");
 
                 entity.Property(e => e.DepartureLocationCode)
@@ -285,6 +297,8 @@ namespace Addon.Core.Entities
                 entity.Property(e => e.TimeDesc).HasMaxLength(250);
 
                 entity.Property(e => e.TourName).HasMaxLength(250);
+
+                entity.Property(e => e.UpdatedBy).HasMaxLength(10);
 
                 entity.Property(e => e.UpdatedTime).HasColumnType("datetime");
 
@@ -323,6 +337,8 @@ namespace Addon.Core.Entities
 
                 entity.Property(e => e.ImageId).ValueGeneratedNever();
 
+                entity.Property(e => e.CreatedBy).HasMaxLength(10);
+
                 entity.Property(e => e.CreatedTime).HasColumnType("datetime");
 
                 entity.Property(e => e.ImageType)
@@ -341,6 +357,8 @@ namespace Addon.Core.Entities
                 entity.Property(e => e.Desc).HasColumnName("_desc");
 
                 entity.Property(e => e.LogTime).HasColumnType("datetime");
+
+                entity.Property(e => e.UserId).HasMaxLength(10);
             });
 
             modelBuilder.Entity<IWarn>(entity =>
@@ -357,6 +375,8 @@ namespace Addon.Core.Entities
                     .IsUnicode(false);
 
                 entity.Property(e => e.Title).HasMaxLength(250);
+
+                entity.Property(e => e.UserId).HasMaxLength(10);
             });
 
             OnModelCreatingPartial(modelBuilder);

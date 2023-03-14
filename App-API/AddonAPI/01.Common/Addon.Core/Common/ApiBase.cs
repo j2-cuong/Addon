@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using Addon.Core.Authorize;
+using AddOn.Models.ResData;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,5 +32,11 @@ namespace Addon.Core.Common
             {"ShowDeposit","https://eco.metatrip.vn/ECOAPI/ShowDeposit" },
             {"AuthKey","https://eco.metatrip.vn/ECOAPI/AuthenMe" }
         };
+        public LoginModels._data GetLoginData(HttpRequest Request)
+        {
+            string token = Request.Headers.Where(x => x.Key == "Authorization").First().Value.ToString().Replace("Bearer ", string.Empty);
+            LoginModels._data PartnerCode = Token.ValidateToken(token);
+            return PartnerCode;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Addon.Core.Entities;
+﻿using Addon.Core.Authorize;
+using Addon.Core.Entities;
 using AddOn.Models.Requests;
 using AddOn.Models.Responses;
 using log4net.Core;

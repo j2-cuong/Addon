@@ -1,14 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Addon.Core.Entities
 {
     public partial class CNavigation
     {
-        [JsonIgnore]
         public Guid NavId { get; set; }
-        [JsonIgnore]
         public string NavCode { get; set; } = null!;
         [JsonIgnore]
         public string NavName { get; set; } = null!;
@@ -25,6 +22,4 @@ namespace Addon.Core.Entities
         [JsonIgnore]
         public string? ParentGroup { get; set; }
     }
-
-
 }

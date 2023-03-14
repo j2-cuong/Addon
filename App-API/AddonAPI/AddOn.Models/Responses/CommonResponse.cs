@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,16 @@ namespace AddOn.Models.Responses
                 Data = Data
             };
         }
-
+        public static LoginResponse<T> SuccessLogin<T>(T data,string token)
+        {
+            return new LoginResponse<T>()
+            {
+                code = (int)ErrorCode.Success,
+                message = "Thành công.",
+                Token = token,
+                Data = data
+            };
+        }
         public static CommonResponse MissingError(string extend = "")
         {
             return new CommonResponse
@@ -127,6 +137,13 @@ namespace AddOn.Models.Responses
     {
         public int code { get; set; }
         public string message { get; set; }
+    }
+    public class LoginResponse<T>
+    {
+        public int code { get; set; }
+        public string message { get; set; }
+        public string Token { get; set; }
+        public T Data { get; set; }
     }
 
 
