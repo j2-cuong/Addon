@@ -9,12 +9,10 @@ namespace Addon.Core.Entities
         public string NavCode { get; set; } = null!;
         public string NavName { get; set; } = null!;
         public string NavUrl { get; set; } = null!;
-        public string? IsPermission { get; set; }
-        public int? ParentLevel { get; set; }
-        public int? ChildLevel { get; set; }
+        public string IsPermission { get; set; } = null!;
+        public string IconName { get; set; } = null!;
+        public string IconStyle { get; set; } = null!;
+        public string IdPage { get; set; } = null!;
         public string? ParentGroup { get; set; }
-        public string? IconName { get; set; }
-        public string? IconStyle { get; set; }
-        public string? IdPage { get; set; }
     }
 }
