@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "8LmyzuqcPED3pjR01kceFjNstRMx7xPb25nOMUhOsRY=",
+  "Source": "Addon.API",
+  "BasePath": "_content/Addon.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

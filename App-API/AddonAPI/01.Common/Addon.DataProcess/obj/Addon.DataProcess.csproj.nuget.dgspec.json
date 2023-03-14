@@ -1,0 +1,204 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.DataProcess/Addon.DataProcess.csproj": {}
+  },
+  "projects": {
+    "/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.Core/Addon.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.Core/Addon.Core.csproj",
+        "projectName": "Addon.Core",
+        "projectPath": "/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.Core/Addon.Core.csproj",
+        "packagesPath": "/Users/huy/.nuget/packages/",
+        "outputPath": "/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/huy/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/AddOn.Models/AddOn.Models.csproj": {
+                "projectPath": "/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/AddOn.Models/AddOn.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.14, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[6.10.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.2, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.10.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.102/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.DataProcess/Addon.DataProcess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.DataProcess/Addon.DataProcess.csproj",
+        "projectName": "Addon.DataProcess",
+        "projectPath": "/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.DataProcess/Addon.DataProcess.csproj",
+        "packagesPath": "/Users/huy/.nuget/packages/",
+        "outputPath": "/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.DataProcess/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/huy/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.Core/Addon.Core.csproj": {
+                "projectPath": "/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.Core/Addon.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.102/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/AddOn.Models/AddOn.Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/AddOn.Models/AddOn.Models.csproj",
+        "projectName": "AddOn.Models",
+        "projectPath": "/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/AddOn.Models/AddOn.Models.csproj",
+        "packagesPath": "/Users/huy/.nuget/packages/",
+        "outputPath": "/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/AddOn.Models/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/huy/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.102/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

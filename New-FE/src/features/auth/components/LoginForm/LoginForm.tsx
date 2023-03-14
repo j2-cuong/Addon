@@ -1,4 +1,5 @@
-import { Button, Checkbox, Form, Input, message } from 'antd';
+import { useState } from 'react';
+import { Button, Form, Input, message } from 'antd';
 import { BarcodeOutlined, UserOutlined } from '@ant-design/icons';
 // import { FormRow } from '@/features/auth/components/LoginForm/LoginFormStyled';
 import { useHistory } from 'react-router-dom';
@@ -7,23 +8,50 @@ import { Observer } from 'mobx-react-lite';
 import { useStore } from '@/store';
 import { getPath } from '@/router-paths';
 import axios from 'axios'
-import { API_CODE_RESPONSE, API_STATUS_RESPONSE, MESSAGE_MODAL_VI } from '@/constants/constants';
+import { API_CODE_RESPONSE, API_MESSAGE_RESPONSE , MESSAGE_MODAL_VI } from '@/constants/constants';
 import {config, ENDPOINT} from '@/config'
+import {mappingResponseObjToMenuObj} from '@/utils/mapping'
 
 const LoginForm = () => {
   const { commonStore } = useStore();
+  const { setMenuObject } = commonStore;
   const [form] = Form.useForm();
   const history = useHistory();
+  const [loadings, setLoadings] = useState<boolean[]>([])
+
+  const enterLoading = () => {
+    setLoadings((prevLoadings) => {
+      const newLoadings = [...prevLoadings];
+      newLoadings[0] = true;
+      return newLoadings;
+    });
+
+    setTimeout(() => {
+      setLoadings((prevLoadings) => {
+        const newLoadings = [...prevLoadings];
+        newLoadings[0] = false;
+        return newLoadings;
+      });
+    }, 6000);
+  };
 
   const handleLogin = (payload : TAuthenticationPayload) => {
     axios.post(config.apiUrl + ENDPOINT.LOGIN, payload, {headers: { 'Content-Type': 'application/json' }}).then((response) => {
-      if(response?.data && response.data.status === API_STATUS_RESPONSE.FAIL ) {
-        console.log(response.data.data.message)
-        const responseMessage = response.data.data.code === API_CODE_RESPONSE.LOGIN_NOT_FOUND ? MESSAGE_MODAL_VI.LOGIN_NOT_FOUND : response.data.data.message
-        void message.error(responseMessage)
+      setLoadings((prevLoadings) => {
+        const newLoadings = [...prevLoadings];
+        newLoadings[0] = false;
+        return newLoadings;
+      });
+      if(response?.data && response.data.code === API_CODE_RESPONSE.ERROR && response.data.message === API_MESSAGE_RESPONSE.SIGNIN_NOT_FOUND) {
+        void message.error(MESSAGE_MODAL_VI.SIGNIN_NOT_FOUND)
+        return;
+      }
+      if(response?.data && response.data.code !== API_CODE_RESPONSE.SUCCESS){
+        void message.error(response.data.message)
         return;
       }
       localStorage.setItem('jwt', response.data.token);
+      setMenuObject(mappingResponseObjToMenuObj(response.data.data))
       history.push(getPath('dashboard'));
       void message.success(MESSAGE_MODAL_VI.LOGIN_SUCCESS);
     }).catch((error) => {
@@ -76,7 +104,7 @@ const LoginForm = () => {
             </FormRow> */}
 
             <Form.Item>
-              <Button block type={'primary'} htmlType={'submit'}>
+              <Button block type={'primary'} htmlType={'submit'} loading={loadings[0]} onClick={() => enterLoading()}>
                 Đăng nhập
               </Button>
             </Form.Item>
