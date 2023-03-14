@@ -1,4 +1,4 @@
-﻿using Addon.API.Logic.TourDetail;
+﻿using Addon.API.Logic;
 using Addon.Core.Common;
 using Addon.Core.Entities;
 using AddOn.Models.Requests;
@@ -47,8 +47,6 @@ namespace Addon.API.Controllers
         [Route("GetById")]
         public async Task<CommonResponse<ITourDetail>> GetById(TourDetail_GetById_Request request)
         {
-            string PartnerCode = new ApiBase().GetLoginData(Request).Partner.PartnerCode;
-            request.PartnerCode = PartnerCode;
             return await svc.GetById(request);
         }
         /// <summary>
@@ -79,8 +77,6 @@ namespace Addon.API.Controllers
         [Route("GetByTourId")]
         public async Task<CommonResponse<List<ITourDetail>>> GetByTourId(TourDetail_GetByTourId_Request request)
         {
-            string PartnerCode = new ApiBase().GetLoginData(Request).Partner.PartnerCode;
-            request.PartnerCode = PartnerCode;
             return await svc.GetByTourId(request);
         }
 
