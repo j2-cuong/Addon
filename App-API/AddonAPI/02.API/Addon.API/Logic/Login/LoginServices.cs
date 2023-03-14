@@ -1,7 +1,8 @@
-﻿using Addon.Core.Common;
-using Addon.Core.Entities;
 ﻿using Addon.Core.Authorize;
+using Addon.Core.Common;
+using Addon.Core.Entities;
 using Addon.Core.Interfaces;
+using Addon.DataProcess.DataProcess;
 using AddOn.Models.Requests;
 using AddOn.Models.ResData;
 using AddOn.Models.Responses;
@@ -9,24 +10,21 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Data;
-using Addon.DataProcess.DataProcess;
-using System.Linq;
-using System.Collections;
-using System.Text.Json.Nodes;
 using static Addon.Core.Const.PermissionMode;
+using static AddOn.Models.Responses.StaticResult;
 
 namespace Addon.Core.Services
 {
     public class LoginServices : ILoginServices
     {
         ApiBase apiBase = new ApiBase();
-        public async Task<Response<ResToken>> LoginEcoSvc(LoginEcoRequest request)
+        public async Task<LoginResponse<List<NavigationModel>>> LoginEcoSvc(LoginEcoRequest request)
         {
-           
-                request.PartnerCode = "DEMO";
-                request.UserName = "accounting";
-                request.Password = "123456@@";
-            
+
+            //request.PartnerCode = "DEMO";
+            //request.UserName = "accounting";
+            //request.Password = "123456@@";
+
 
 
             //request.PartnerCode = "DEMO";
@@ -40,27 +38,23 @@ namespace Addon.Core.Services
             JObject jObject = JObject.Parse(DataStr);
             var UserRole = (string)jObject["Data"]["User"]["UserRole"];
             ProcessJson json = new ProcessJson();
+            LoginResponse<List<NavigationModel>> res = new LoginResponse<List<NavigationModel>>();
             switch (JRes.Code)
             {
                 case "0":
                     var getPermission = GetNav(UserRole);
                     string token = new Token().GenerateToken(JRes.Data);
-                    var res = new Response<ResToken>(
-                        1,
-                        "Thành Công",
-                        getPermission,
-                        token
-                    ); 
-                    
-                    return res;
+                    res = StaticResult.SuccessLogin<List<NavigationModel>>(getPermission, token);
                     break;
                 default:
-                    return new Response<ResToken>(
-                        2,
-                        "Thất bại"
-                    );
+                    res = new LoginResponse<List<NavigationModel>>
+                    {
+                        code = (int)ErrorCode.SysErr,
+                        message = JRes.Message
+                    };
                     break;
             }
+            return res;
         }
 
         public async Task<CommonResponse<string>> CreateKeyLogin(LoginEcoRequest request)
@@ -134,8 +128,8 @@ namespace Addon.Core.Services
             {
                 NavName = o.NavName,
                 NavUrl = o.NavUrl,
-                ParentLevel = o.ParentLevel,
-                ChildLevel  = o.ChildLevel,
+                ParentLevel = (int)o.ParentLevel,
+                ChildLevel = (int)o.ChildLevel,
             }).OrderByDescending(x => x.ParentLevel).ThenBy(x => x.ChildLevel)
             .ToList();
             //var getSubMenu 

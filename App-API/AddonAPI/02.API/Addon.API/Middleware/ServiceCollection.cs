@@ -10,6 +10,7 @@ namespace Addon.API.Middleware
         {
             services.AddScoped<ILoginServices, LoginServices>();
             services.AddScoped<ITourCategoryServices, TourCategoryServices>();
+            services.AddScoped<ITourServices, TourServices>();
             //services.AddScoped<ITourHandler, TourHandler>();
         }
     }
