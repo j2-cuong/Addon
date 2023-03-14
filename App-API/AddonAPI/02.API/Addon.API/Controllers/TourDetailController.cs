@@ -1,4 +1,4 @@
-﻿using Addon.API.Logic.TourDetail;
+﻿using Addon.API.Logic.Tour.TourDetail;
 using Addon.Core.Common;
 using Addon.Core.Entities;
 using AddOn.Models.Requests;

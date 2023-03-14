@@ -25,4 +25,8 @@
     <ProjectReference Include="..\..\AddOn.Models\AddOn.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+
 </Project>
