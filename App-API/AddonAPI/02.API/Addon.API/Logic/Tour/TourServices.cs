@@ -7,7 +7,7 @@ using System.Diagnostics.Metrics;
 using System.Net;
 using static AddOn.Models.Requests.ITourRequest;
 
-namespace Addon.API
+namespace Addon.API.Logic
 {
     /// <summary>
     /// 

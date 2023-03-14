@@ -1,12 +1,10 @@
-﻿using Addon.Core.Authorize;
+﻿using Addon.API.Logic;
 using Addon.Core.Common;
 using Addon.Core.Entities;
 using AddOn.Models.ResData;
 using AddOn.Models.Responses;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http.Headers;
 using static AddOn.Models.Requests.ITourRequest;
 
 namespace Addon.API.Controllers

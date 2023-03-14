@@ -1,5 +1,5 @@
-﻿using Addon.API.Logic.TourCategory;
-using Addon.API.Logic.TourDetail;
+﻿using Addon.API.Logic.Tour.TourDetail;
+using Addon.API.Logic.TourCategory;
 using Addon.Core.Interfaces;
 using Addon.Core.Services;
 
