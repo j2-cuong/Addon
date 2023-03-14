@@ -10,21 +10,20 @@ import {
 import {
   LogoutOutlined,
   UserOutlined,
-  ShoppingCartOutlined,
-  SettingOutlined,
-  TeamOutlined,
-  ControlOutlined,
-  BarChartOutlined,
+ 
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Dropdown, Menu } from 'antd';
 import { useHistory } from 'react-router-dom';
 import { getPath } from '@/router-paths';
+import { Observer } from 'mobx-react-lite';
+import { useStore } from '@/store';
 
-type MenuItem = Required<MenuProps>['items'][number];
+// type MenuItem = Required<MenuProps>['items'][number];
 
 const MainLayout: FC<PropsWithChildren> = ({ children }) => {
   const history = useHistory();
+  const {commonStore} = useStore();
 
   const userMenuItems: MenuProps['items'] = [
     {
@@ -49,50 +48,73 @@ const MainLayout: FC<PropsWithChildren> = ({ children }) => {
     }
   };
 
-  const getItem = (
-    label: React.ReactNode,
-    key: React.Key,
-    icon?: React.ReactNode,
-    children?: MenuItem[],
-    type?: 'group',
-  ): MenuItem => {
-    return {
-      key,
-      icon,
-      children,
-      label,
-      type,
-    } as MenuItem;
-  };
+  // const getItem = (
+  //   label: React.ReactNode,
+  //   key: React.Key,
+  //   icon?: React.ReactNode,
+  //   children?: MenuItem[],
+  //   type?: 'group',
+  // ): MenuItem => {
+  //   return {
+  //     key,
+  //     icon,
+  //     children,
+  //     label,
+  //     type,
+  //   } as MenuItem;
+  // };
 
-  const items: MenuProps['items'] = [
-    getItem('Tour', 'tour', <TeamOutlined />, [
-      getItem('Danh sách Tour', 'danh_sach_tour'),
-      getItem('Tìm kiếm Tour', 'tim_kiem_tour'),
-      getItem('Tạo Tour', 'tao_tour'),
-      getItem('Sửa Tour', 'sua_tour'),
-      getItem('Xóa Tour', 'xoa_tour'),
-      getItem('Duyệt Tour', 'duyet_tour'),
-    ]),
-    getItem('Bookings', 'sales', <ShoppingCartOutlined />, [
-      getItem('Quản lý Booking', 'quan_ly_booking'),
-      getItem('Đặt Booking tour', 'dat_booking_tour'),
-      getItem('Thay đổi trạng thái Booking', 'thay_doi_trang_thai_booking'),
-      getItem('Thanh toán Booking', 'thanh_toan_booking'),
-    ]),
-    getItem('Báo cáo', 'bao_cao', <BarChartOutlined />, [
-      getItem('Quản lý báo cáo thanh toán', 'quan_ly_bao_cao_thanh_toan'),
-    ]),
-    getItem('Cấu hình', 'quan_tri', <ControlOutlined />, [
-      getItem('Cấu hình danh mục Tour', 'cau_hinh_danh_muc_tour'),
-      getItem('Cấu hình chiết khấu', 'cau_hinh_chiet_khau'),
-      getItem('Cấu hình lưu ý', 'cau_hinh_luu_y'),
-    ]),
-    getItem('Cài đặt', 'cai_dat', <SettingOutlined />),
-  ];
+  // const items : MenuProps['items'] = [
+  //           {
+  //               key: "blank-page",
+  //               label: "Blank Page",
+  //               icon: <TeamOutlined/>,
+  //           },
+  //           {
+  //               key: "errors",
+  //               label: "Error Pages",
+  //               icon: <ShoppingCartOutlined/>,
+  //               children: [
+  //                   {
+  //                       key: "error-page",
+  //                       label: "404",
+  //                   },
+  //               ],
+  //           },
+  //       ]
+
+  // const items: MenuProps['items'] = [
+  //   getItem('Tour', 'tour', <TeamOutlined />, [
+  //     getItem('Danh sách Tour', 'danh_sach_tour'),
+  //     getItem('Tìm kiếm Tour', 'tim_kiem_tour'),
+  //     getItem('Tạo Tour', 'tao_tour'),
+  //     getItem('Sửa Tour', 'sua_tour'),
+  //     getItem('Xóa Tour', 'xoa_tour'),
+  //     getItem('Duyệt Tour', 'duyet_tour'),
+  //   ]),
+  //   getItem('Bookings', 'sales', <ShoppingCartOutlined />, [
+  //     getItem('Quản lý Booking', 'quan_ly_booking'),
+  //     getItem('Đặt Booking tour', 'dat_booking_tour'),
+  //     getItem('Thay đổi trạng thái Booking', 'thay_doi_trang_thai_booking'),
+  //     getItem('Thanh toán Booking', 'thanh_toan_booking'),
+  //   ]),
+  //   getItem('Báo cáo', 'bao_cao', <BarChartOutlined />, [
+  //     getItem('Quản lý báo cáo thanh toán', 'quan_ly_bao_cao_thanh_toan'),
+  //   ]),
+  //   getItem('Cấu hình', 'quan_tri', <ControlOutlined />, [
+  //     getItem('Cấu hình danh mục Tour', 'cau_hinh_danh_muc_tour'),
+  //     getItem('Cấu hình chiết khấu', 'cau_hinh_chiet_khau'),
+  //     getItem('Cấu hình lưu ý', 'cau_hinh_luu_y'),
+  //   ]),
+  //   getItem('Cài đặt', 'cai_dat', <SettingOutlined />),
+  // ];
 
   return (
-    <MainLayoutWrapper>
+    <Observer>
+      {() => {
+      const {menuObject} = commonStore;
+          return (
+            <MainLayoutWrapper>
 
       <MainSidebarWrapper>
         <TopSidebarContainer>
@@ -112,7 +134,7 @@ const MainLayout: FC<PropsWithChildren> = ({ children }) => {
         </TopSidebarContainer>
         <Menu
           mode='inline'
-          items={items}
+          items={menuObject}
           theme='dark'
         />
       </MainSidebarWrapper>
@@ -122,6 +144,11 @@ const MainLayout: FC<PropsWithChildren> = ({ children }) => {
       </MainPageContentWrapper>
 
     </MainLayoutWrapper>
+          )
+        }
+      }
+    
+    </Observer>
   );
 };
 

@@ -15,6 +15,25 @@ export class CommonStore {
     this.isOffline = state;
   };
 
+  /** Menu object */
+  @observable menuObject = [{
+                key: "home-page",
+                label: "Home Page",
+            },
+            {
+                key: "errors",
+                label: "Error Pages",
+                children: [
+                    {
+                        key: "error-page",
+                        label: "404",
+                    },
+                ],
+            },];
+  @action setMenuObject = (object: any) => {
+    this.menuObject = object;
+  }
+
 }
 
 export default new CommonStore();
