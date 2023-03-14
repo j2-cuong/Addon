@@ -1,0 +1,12 @@
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.Caching/bin/Debug/net6.0/Addon.Caching.deps.json
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.Caching/bin/Debug/net6.0/Addon.Caching.dll
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.Caching/bin/Debug/net6.0/ref/Addon.Caching.dll
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.Caching/bin/Debug/net6.0/Addon.Caching.pdb
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.Caching/obj/Debug/net6.0/Addon.Caching.csproj.AssemblyReference.cache
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.Caching/obj/Debug/net6.0/Addon.Caching.GeneratedMSBuildEditorConfig.editorconfig
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.Caching/obj/Debug/net6.0/Addon.Caching.AssemblyInfoInputs.cache
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.Caching/obj/Debug/net6.0/Addon.Caching.AssemblyInfo.cs
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.Caching/obj/Debug/net6.0/Addon.Caching.csproj.CoreCompileInputs.cache
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.Caching/obj/Debug/net6.0/Addon.Caching.dll
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.Caching/obj/Debug/net6.0/ref/Addon.Caching.dll
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/01.Common/Addon.Caching/obj/Debug/net6.0/Addon.Caching.pdb

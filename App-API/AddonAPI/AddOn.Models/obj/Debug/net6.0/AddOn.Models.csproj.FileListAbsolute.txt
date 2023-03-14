@@ -1,0 +1,12 @@
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/AddOn.Models/bin/Debug/net6.0/AddOn.Models.deps.json
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/AddOn.Models/bin/Debug/net6.0/AddOn.Models.dll
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/AddOn.Models/bin/Debug/net6.0/ref/AddOn.Models.dll
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/AddOn.Models/bin/Debug/net6.0/AddOn.Models.pdb
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/AddOn.Models/obj/Debug/net6.0/AddOn.Models.csproj.AssemblyReference.cache
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/AddOn.Models/obj/Debug/net6.0/AddOn.Models.GeneratedMSBuildEditorConfig.editorconfig
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/AddOn.Models/obj/Debug/net6.0/AddOn.Models.AssemblyInfoInputs.cache
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/AddOn.Models/obj/Debug/net6.0/AddOn.Models.AssemblyInfo.cs
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/AddOn.Models/obj/Debug/net6.0/AddOn.Models.csproj.CoreCompileInputs.cache
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/AddOn.Models/obj/Debug/net6.0/AddOn.Models.dll
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/AddOn.Models/obj/Debug/net6.0/ref/AddOn.Models.dll
+/Users/huy/Desktop/work_space/metatrip/AddonProject/App-API/AddonAPI/AddOn.Models/obj/Debug/net6.0/AddOn.Models.pdb
