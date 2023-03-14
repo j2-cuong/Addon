@@ -2,7 +2,7 @@
 using AddOn.Models.Requests;
 using AddOn.Models.Responses;
 
-namespace Addon.API.Logic.Tour.TourDetail
+namespace Addon.API.Logic
 {
     public interface ITourDetailServices
     {

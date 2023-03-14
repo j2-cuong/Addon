@@ -4,7 +4,7 @@ using AddOn.Models.Responses;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
-namespace Addon.API.Logic.Tour.TourDetail
+namespace Addon.API.Logic
 {
     public class TourDetailServices : ITourDetailServices
     {
@@ -14,18 +14,11 @@ namespace Addon.API.Logic.Tour.TourDetail
             CommonResponse<ITourDetail> res = new CommonResponse<ITourDetail>();
             if (string.IsNullOrEmpty(request.TourDetailId))
                 res = StaticResult.MissingError<ITourDetail>("Id chi tiết Tour(TourDetailId)");
-            else if (string.IsNullOrEmpty(request.PartnerCode))
-                res = StaticResult.MissingError<ITourDetail>("PartnerCode");
             else
             {
                 try
                 {
-                    string query = $@"SELECT D.* FROM I_TourDetail D
-                                    LEFT JOIN I_Tour AS T ON
-                                    T.TourId = D.TourId
-                                    WHERE (T.PartnerCode = '{request.PartnerCode}' OR T.IsPrivateTour = 0)
-                                    AND D.TourDetailId = '{request.TourDetailId}'";
-                    ITourDetail data = context.ITourDetails.FromSqlRaw(query).FirstOrDefault();
+                    ITourDetail data = context.ITourDetails.Where(x => x.TourDetailId == Guid.Parse(request.TourDetailId)).FirstOrDefault();
                     if (data == null)
                         res = StaticResult.NotExistError<ITourDetail>();
                     else
@@ -43,18 +36,11 @@ namespace Addon.API.Logic.Tour.TourDetail
             CommonResponse<List<ITourDetail>> res = new CommonResponse<List<ITourDetail>>();
             if (string.IsNullOrEmpty(request.TourId))
                 res = StaticResult.MissingError<List<ITourDetail>>("Id Tour(TourId)");
-            else if (string.IsNullOrEmpty(request.PartnerCode))
-                res = StaticResult.MissingError<List<ITourDetail>>("PartnerCode");
             else
             {
                 try
                 {
-                    string query = $@"SELECT D.* FROM I_TourDetail D
-                                    LEFT JOIN I_Tour AS T ON
-                                    T.TourId = D.TourId
-                                    WHERE (T.PartnerCode = '{request.PartnerCode}' OR T.IsPrivateTour = 0)
-                                    AND T.TourId = '{request.TourId}'";
-                    List<ITourDetail> data = context.ITourDetails.FromSqlRaw(query).ToList();
+                    List<ITourDetail> data = context.ITourDetails.Where(x => x.TourId == Guid.Parse(request.TourId)).ToList();
                     if (data.Count == 0)
                         res = StaticResult.NotExistError<List<ITourDetail>>();
                     else

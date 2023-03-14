@@ -18,14 +18,10 @@ namespace AddOn.Models.Requests
     }
     public class TourDetail_GetById_Request
     {
-        [JsonIgnore]
-        public string? PartnerCode { get; set; }
-        public string TourDetailId { get; set; }
+        public string? TourDetailId { get; set; }
     }
     public class TourDetail_GetByTourId_Request
     {
-        [JsonIgnore]
-        public string? PartnerCode { get; set; }
         public string TourId { get; set; }
     }
     public class TourDetail_Create_Request
