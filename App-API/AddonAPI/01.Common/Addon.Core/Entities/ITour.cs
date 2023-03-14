@@ -12,12 +12,12 @@ namespace Addon.Core.Entities
         public DateTime? DepartureTime { get; set; }
         public DateTime? ArrivalTime { get; set; }
         public decimal? Price { get; set; }
-        public Guid? CreatedBy { get; set; }
+        public string? CreatedBy { get; set; }
         public DateTime? CreatedTime { get; set; }
-        public Guid? UpdatedBy { get; set; }
+        public string? UpdatedBy { get; set; }
         public DateTime? UpdatedTime { get; set; }
         public int? SeatsNumber { get; set; }
-        public TimeSpan? TimeLimit { get; set; }
+        public int? TimeLimit { get; set; }
         public string? FirstCharge { get; set; }
         public DateTime? SecondChargeTime { get; set; }
         public decimal? VisaPrice { get; set; }

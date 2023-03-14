@@ -38,6 +38,7 @@ namespace AddOn.Models.ResData
     }
     public class _user
     {
+        public string? UserId { get; set; }
         public string? Username { get; set; }
         public string? DisplayName { get; set; }
         public string? UserRole { get; set; }
@@ -54,5 +55,11 @@ namespace AddOn.Models.ResData
             public _partner? Partner { get; set; }
             public _user? User { get; set; }
         }
+    }
+    public class ResToken
+    {
+        public _partner? Partner { get; set; }
+        public _user? User { get; set; }
+        public string? Token { get; set; }
     }
 }

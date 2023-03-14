@@ -7,9 +7,12 @@ namespace Addon.Core.Entities
     {
         public Guid NavId { get; set; }
         public string NavCode { get; set; } = null!;
-        public string? Title { get; set; }
-        public string? Url { get; set; }
-        public string? UserRole { get; set; }
-        public int? PartnerLevel { get; set; }
+        public string NavName { get; set; } = null!;
+        public string NavUrl { get; set; } = null!;
+        public string IsPermission { get; set; } = null!;
+        public string IconName { get; set; } = null!;
+        public string IconStyle { get; set; } = null!;
+        public string IdPage { get; set; } = null!;
+        public string? ParentGroup { get; set; }
     }
 }

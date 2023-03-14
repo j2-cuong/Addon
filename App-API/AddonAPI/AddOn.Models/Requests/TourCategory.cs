@@ -8,6 +8,10 @@ namespace AddOn.Models.Requests
 {
     public class GetTourCategoryByIdRequest 
     {
-        public string id { get; set; }
+        public string? CategoryId { get; set; }
+    }
+    public class GetTourCategoryByNameRequest
+    {
+        public string name { get; set; }
     }
 }

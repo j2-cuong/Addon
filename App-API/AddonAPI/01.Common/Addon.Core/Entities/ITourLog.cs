@@ -9,6 +9,6 @@ namespace Addon.Core.Entities
         public Guid? TourId { get; set; }
         public string? Desc { get; set; }
         public DateTime? LogTime { get; set; }
-        public Guid? UserId { get; set; }
+        public string? UserId { get; set; }
     }
 }
