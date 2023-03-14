@@ -1,4 +1,5 @@
 ﻿using Addon.API.Logic.TourCategory;
+using Addon.API.Logic.TourDetail;
 using Addon.Core.Interfaces;
 using Addon.Core.Services;
 
@@ -11,6 +12,7 @@ namespace Addon.API.Middleware
             services.AddScoped<ILoginServices, LoginServices>();
             services.AddScoped<ITourCategoryServices, TourCategoryServices>();
             services.AddScoped<ITourServices, TourServices>();
+            services.AddScoped<ITourDetailServices, TourDetailServices>();
             //services.AddScoped<ITourHandler, TourHandler>();
         }
     }

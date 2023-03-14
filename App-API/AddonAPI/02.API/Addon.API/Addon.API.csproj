@@ -25,8 +25,4 @@
     <ProjectReference Include="..\..\AddOn.Models\AddOn.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Logic\NewFolder\" />
-  </ItemGroup>
-
 </Project>
