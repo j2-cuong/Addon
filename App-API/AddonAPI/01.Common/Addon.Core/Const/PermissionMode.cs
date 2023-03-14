@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Addon.Core.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,24 +10,19 @@ namespace Addon.Core
 {
     public class PermissionMode
     {
-        public partial class NavigationModel
+        public class Nav 
         {
-            [JsonIgnore]
-            public Guid? NavId { get; set; }
-            [JsonIgnore]
+            public Guid? NavId { get; set;} 
+        }
+        public class NavigationModel : Nav
+        {
             public string NavName { get; set; } = null!;
-            [JsonIgnore]
             public string NavUrl { get; set; } = null!;
-            [JsonIgnore]
-            public int ParentLevel { get; set; }
-            [JsonIgnore]
-            public int ChildLevel { get; set; }
-            [JsonIgnore]
             public string IconName { get; set; } = null!;
-            [JsonIgnore]
             public string IconStyle { get; set; } = null!;
-            [JsonIgnore]
             public string IdPage { get; set; } = null!;
+            public string? ParentGroup { get; set; }
+            public List<NavigationModel>? SubMenu { get; set; }
         }
     }
 }

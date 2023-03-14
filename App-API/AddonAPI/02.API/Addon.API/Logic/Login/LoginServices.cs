@@ -8,21 +8,11 @@ using AddOn.Models.ResData;
 using AddOn.Models.Responses;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
 using System.Data;
-<<<<<<< HEAD
-using Addon.DataProcess.DataProcess;
-using System.Linq;
-using System.Collections;
-using System.Text.Json.Nodes;
-using static Addon.Core.PermissionMode;
-using System.Diagnostics.Metrics;
 using Addon.Core.Model;
 using Addon.Core.Utils;
-=======
-using static Addon.Core.Const.PermissionMode;
 using static AddOn.Models.Responses.StaticResult;
->>>>>>> d7c6d1aabb3501dca39de6724013dd35f2e89b2c
+using static Addon.Core.PermissionMode;
 
 namespace Addon.Core.Services
 {
@@ -34,109 +24,11 @@ namespace Addon.Core.Services
             _logger = logger;
         }
         ApiBase apiBase = new ApiBase();
-        public async Task<LoginResponse<List<NavigationModel>>> LoginEcoSvc(LoginEcoRequest request)
+        public async Task<LoginResponse<List<NavModel>>> LoginEcoSvc(LoginEcoRequest request)
         {
-<<<<<<< HEAD
-
-            try
-            {
-                request.PartnerCode = "DEMO";
-                request.UserName = "huynguyen";
-                request.Password = "Huy@@789##";
-
-                HttpResponseMessage resMsg = await apiBase._postAsync(request, "Authentication");
-                string DataStr = resMsg.Content.ReadAsStringAsync().Result;
-                LoginModels JRes = JsonConvert.DeserializeObject<LoginModels>(DataStr);
-
-                JObject jObject = JObject.Parse(DataStr);
-                ProcessJson json = new ProcessJson();
-                switch (JRes.Code)
-                {
-                    case "0":
-                        var UserRole = (string)jObject["Data"]["User"]["UserRole"];
-                        var getPermission = GetNav(UserRole);
-                        string token = new Token().GenerateToken(JRes.Data);
-                        var res = new Response<ResToken>(
-                            1,
-                            "Thành Công",
-                            getPermission,
-                            token
-                        );
-
-                        return res;
-                        break;
-                    default:
-                        _logger.LogCritical
-                                   (
-                                       $@"*------ StartRequest ------*" + "\r" +
-                                       $@"      Controller : LoginEcoSvc      " + "\r" +
-                                       $@"      Thông báo: {jObject}      " + "\r\r" +
-                                       $@"      Eco res: {DataStr}      " + "\r\r" +
-                                       $@"*------ EndRequest ------*" + "\r\r"
-                                   );
-                        return new Response<ResToken>(
-                            2,
-                            "Thất bại",
-                            JRes
-                        );
-                        break;
-                }
-            } catch (Exception ex)
-            {
-                _logger.LogCritical
-                                    (
-                                        $@"*------ StartRequest 'Data is Null------*" + "\r" +
-                                        $@"      Controller : LoginEcoSvc      " + "\r" +
-                                        $@"      Thông báo: {ex.Message}      " + "\r\r" +
-                                        $@"*------ EndRequest ------*" + "\r\r"
-                                    );
-                return new Response<ResToken>(
-                            2,
-                            "Thất bại"
-                        );
-=======
-
-            //request.PartnerCode = "DEMO";
-            //request.UserName = "accounting";
-            //request.Password = "123456@@";
-
-
-
             //request.PartnerCode = "DEMO";
             //request.UserName = "huynguyen";
             //request.Password = "Huy@@789##";
-
-            HttpResponseMessage resMsg = await apiBase._postAsync(request, "Authentication");
-            string DataStr = resMsg.Content.ReadAsStringAsync().Result;
-            LoginModels JRes = JsonConvert.DeserializeObject<LoginModels>(DataStr);
-
-            JObject jObject = JObject.Parse(DataStr);
-            var UserRole = (string)jObject["Data"]["User"]["UserRole"];
-            ProcessJson json = new ProcessJson();
-            LoginResponse<List<NavigationModel>> res = new LoginResponse<List<NavigationModel>>();
-            switch (JRes.Code)
-            {
-                case "0":
-                    var getPermission = GetNav(UserRole);
-                    string token = new Token().GenerateToken(JRes.Data);
-                    res = StaticResult.SuccessLogin<List<NavigationModel>>(getPermission, token);
-                    break;
-                default:
-                    res = new LoginResponse<List<NavigationModel>>
-                    {
-                        code = (int)ErrorCode.SysErr,
-                        message = JRes.Message
-                    };
-                    break;
->>>>>>> d7c6d1aabb3501dca39de6724013dd35f2e89b2c
-            }
-            return res;
-        }
-
-
-        public async Task<Response<ResToken>> LoginWithParamEco(LoginEcoRequest request)
-        {
-
             try
             {
                 HttpResponseMessage resMsg = await apiBase._postAsync(request, "Authentication");
@@ -145,52 +37,40 @@ namespace Addon.Core.Services
 
                 JObject jObject = JObject.Parse(DataStr);
                 ProcessJson json = new ProcessJson();
+                LoginResponse<List<NavModel>> res = new LoginResponse<List<NavModel>>();
                 switch (JRes.Code)
                 {
                     case "0":
                         var UserRole = (string)jObject["Data"]["User"]["UserRole"];
-                        var getPermission = GetNav(UserRole);
                         string token = new Token().GenerateToken(JRes.Data);
-                        var res = new Response<ResToken>(
-                            1,
-                            "Thành Công",
-                            getPermission,
-                            token
-                        );
-
-                        return res;
+                        res = StaticResult.SuccessLogin<List<NavModel>>(GetChildNav(null, UserRole.ToString()), token);
                         break;
                     default:
-                        _logger.LogCritical
-                                   (
-                                       $@"*------ StartRequest ------*" + "\r" +
-                                       $@"      Controller : LoginEcoSvc      " + "\r" +
-                                       $@"      Thông báo: {jObject}      " + "\r\r" +
-                                       $@"      Eco res: {DataStr}      " + "\r\r" +
-                                       $@"*------ EndRequest ------*" + "\r\r"
-                                   );
-                        return new Response<ResToken>(
-                            2,
-                            "Thất bại"
-                        );
+                        res = new LoginResponse<List<NavModel>>
+                        {
+                            code = (int)ErrorCode.SysErr,
+                            message = JRes.Message
+                        };
                         break;
                 }
+                return res;
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 _logger.LogCritical
-                                    (
-                                        $@"*------ StartRequest ------*" + "\r" +
-                                        $@"      Controller : LoginEcoSvc      " + "\r" +
-                                        $@"      Thông báo: {ex.Message}      " + "\r\r" +
-                                        $@"*------ EndRequest ------*" + "\r\r"
-                                    );
-                return new Response<ResToken>(
-                            2,
-                            "Thất bại"
-                        );
+                               (
+                                   $@"*------ StartRequest 'Data is Null------*" + "\r" +
+                                   $@"      Controller : LoginEcoSvc      " + "\r" +
+                                   $@"      Thông báo: {e.Message}      " + "\r\r" +
+                                   $@"*------ EndRequest ------*" + "\r\r"
+                               );
+                var res = new LoginResponse<List<NavModel>>
+                {
+                    code = (int)ErrorCode.SysErr,
+                    message = e.Message
+                };
+                return res;
             }
-
         }
 
         public async Task<CommonResponse<string>> CreateKeyLogin(LoginEcoRequest request)
@@ -252,66 +132,74 @@ namespace Addon.Core.Services
             return res;
         }
 
-        public List<NavModel> GetNav(string PermissionName)
+        //public List<NavModel> GetNav(string PermissionName)
+        //{
+        //    AddonDBContext context = new AddonDBContext();
+        //    List<NavModel> result = new List<NavModel>();
+        //    List<NavModel> getSubMenu = new List<NavModel>();
+        //    List<NavModel> getChildrenMenu = new List<NavModel>();
+        //    JObject res = new JObject();
+        //    ProcessJson jsonConvert = new ProcessJson();
+        //    // Tìm Menu tổng
+        //    var a = ;
+
+
+        //    // menu root
+        //    var callMenu = (from i in context.CNavigations
+        //                    where
+        //                    (
+        //                      i.IsPermission.ToUpper().Contains(PermissionName) && (string.IsNullOrEmpty(i.ParentGroup))
+        //                    )
+        //                    select i).ToList();
+
+        //    result = AutoMapperConfig.AutoMap<CNavigation, NavModel>(callMenu);
+
+        //    if (result.Count > 0)
+        //    {
+        //        foreach (var pair in result)
+        //        {
+        //            // menu cấp 1
+        //            var callSubMenu = context.CNavigations.Where(x => (!string.IsNullOrEmpty(x.ParentGroup) && pair.NavId.ToString().ToUpper().Equals(x.ParentGroup))).ToList();
+
+        //            pair.Children = AutoMapperConfig.AutoMap<CNavigation, NavModel>(callSubMenu);
+
+        //            if (pair.Children != null)
+        //            {
+        //                foreach (var childrenMenu in pair.Children)
+        //                {
+        //                    if (!String.IsNullOrEmpty(childrenMenu.ParentGroup))
+        //                    {
+        //                        // menu cấp 2
+        //                        var callChildrenMenu = context.CNavigations.Where(x => (!string.IsNullOrEmpty(x.ParentGroup) && childrenMenu.NavId.ToString().ToUpper().Equals(x.ParentGroup))).ToList();
+
+        //                        childrenMenu.Children = AutoMapperConfig.AutoMap<CNavigation, NavModel>(callChildrenMenu);
+        //                    }
+        //                }
+        //            }
+
+        //        }
+        //    }
+        //    return result;
+        //}
+
+        public List<NavModel> GetChildNav(string parentId, string IsPer)
         {
             AddonDBContext context = new AddonDBContext();
-            List<NavModel> result = new List<NavModel>();
-            List<NavModel> getSubMenu = new List<NavModel>();
-            List<NavModel> getChildrenMenu = new List<NavModel>();
-            JObject res = new JObject();
-            ProcessJson jsonConvert = new ProcessJson();
-
-            PermissionName = "Booking";
-            var ParentGroup = "a83e1897-d64e-477f-900b-424d6948f6cc";
-            // Tìm Menu tổng
-            var callMenu = (from i in context.CNavigations
-                            where
-                            (
-                              i.IsPermission.ToUpper().Contains(PermissionName) && (string.IsNullOrEmpty(i.ParentGroup) || (!string.IsNullOrEmpty(i.ParentGroup) && i.ParentGroup.Contains("test")))
-                            )
-                            select i).ToList();
-
-            result = AutoMapperConfig.AutoMap<CNavigation, NavModel>(callMenu);
-
-            if (result.Count > 0)
+            var menuRootEntity = context.CNavigations.Where(x => (x.IsPermission.ToUpper().Contains(IsPer.ToUpper())) &&(string.IsNullOrEmpty(parentId) && string.IsNullOrEmpty(x.ParentGroup)) || (!string.IsNullOrEmpty(parentId) && !string.IsNullOrEmpty(x.ParentGroup) && x.ParentGroup.ToLower() == parentId.ToLower())).ToList();
+            var menuRootModel = AutoMapperConfig.AutoMap<CNavigation, NavModel>(menuRootEntity);
+            foreach (var navModel in menuRootModel)
             {
-<<<<<<< HEAD
-                foreach (var pair in result)
+                //xử lý đoạn này
+                var children = GetChildNav(navModel.NavId.ToString(), IsPer);
+                navModel.Children = children;
+
+                if (children!=null && children.Count() > 0)
                 {
-                   
-                   // menu cấp 1
-                   var callSubMenu = context.CNavigations.Where(x => (!string.IsNullOrEmpty(x.ParentGroup) && pair.NavId.ToString().ToUpper().Equals(x.ParentGroup))).ToList();
-
-                   pair.Children = AutoMapperConfig.AutoMap<CNavigation, NavModel>(callSubMenu);
-
-                   if (pair.Children != null)
-                   {
-                       foreach (var childrenMenu in pair.Children)
-                       {
-                           if (!String.IsNullOrEmpty(childrenMenu.ParentGroup))
-                           {
-                                // menu cấp 2
-                                var callChildrenMenu = context.CNavigations.Where(x => (!string.IsNullOrEmpty(x.ParentGroup) && childrenMenu.NavId.ToString().ToUpper().Equals(x.ParentGroup))).ToList();
-
-                               childrenMenu.Children = AutoMapperConfig.AutoMap<CNavigation, NavModel>(callChildrenMenu);
-                           }
-                       }
-                   }
-                    
+                    navModel.NavUrl = "";
+                    navModel.ParentGroup = "";
                 }
             }
-            var a = result;
-            return result;
-=======
-                NavName = o.NavName,
-                NavUrl = o.NavUrl,
-                ParentLevel = (int)o.ParentLevel,
-                ChildLevel = (int)o.ChildLevel,
-            }).OrderByDescending(x => x.ParentLevel).ThenBy(x => x.ChildLevel)
-            .ToList();
-            //var getSubMenu 
-            return getMenu;
->>>>>>> d7c6d1aabb3501dca39de6724013dd35f2e89b2c
+            return menuRootModel;
         }
     }
 }
