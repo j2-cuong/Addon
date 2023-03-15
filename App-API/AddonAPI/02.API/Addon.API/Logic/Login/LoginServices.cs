@@ -12,7 +12,8 @@ using System.Data;
 using Addon.Core.Model;
 using Addon.Core.Utils;
 using static AddOn.Models.Responses.StaticResult;
-using static Addon.Core.PermissionMode;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Addon.Core.Services
 {
@@ -24,7 +25,7 @@ namespace Addon.Core.Services
             _logger = logger;
         }
         ApiBase apiBase = new ApiBase();
-        public async Task<LoginResponse<List<NavModel>>> LoginEcoSvc(LoginEcoRequest request)
+        public async Task<LoginResponse<List<ResToken>>> LoginEcoSvc(LoginEcoRequest request)
         {
             //request.PartnerCode = "DEMO";
             //request.UserName = "huynguyen";
@@ -37,16 +38,19 @@ namespace Addon.Core.Services
 
                 JObject jObject = JObject.Parse(DataStr);
                 ProcessJson json = new ProcessJson();
-                LoginResponse<List<NavModel>> res = new LoginResponse<List<NavModel>>();
+                LoginResponse<List<ResToken>> res = new LoginResponse<List<ResToken>>();
                 switch (JRes.Code)
                 {
                     case "0":
-                        var UserRole = (string)jObject["Data"]["User"]["UserRole"];
                         string token = new Token().GenerateToken(JRes.Data);
-                        res = StaticResult.SuccessLogin<List<NavModel>>(GetChildNav(null, UserRole.ToString()), token);
+                        var UserRole = (string)jObject["Data"]["User"]["UserRole"];
+                        var DisplayName = (string)jObject["Data"]["User"]["DisplayName"];
+                        var Account = (string)jObject["Data"]["User"]["Username"];
+
+                        res = StaticResult.SuccessLogin<List<ResToken>>(null, token, UserRole, DisplayName, Account);
                         break;
                     default:
-                        res = new LoginResponse<List<NavModel>>
+                        res = new LoginResponse<List<ResToken>>
                         {
                             code = (int)ErrorCode.SysErr,
                             message = JRes.Message
@@ -64,7 +68,7 @@ namespace Addon.Core.Services
                                    $@"      Thông báo: {e.Message}      " + "\r\r" +
                                    $@"*------ EndRequest ------*" + "\r\r"
                                );
-                var res = new LoginResponse<List<NavModel>>
+                var res = new LoginResponse<List<ResToken>>
                 {
                     code = (int)ErrorCode.SysErr,
                     message = e.Message
@@ -132,65 +136,14 @@ namespace Addon.Core.Services
             return res;
         }
 
-        //public List<NavModel> GetNav(string PermissionName)
-        //{
-        //    AddonDBContext context = new AddonDBContext();
-        //    List<NavModel> result = new List<NavModel>();
-        //    List<NavModel> getSubMenu = new List<NavModel>();
-        //    List<NavModel> getChildrenMenu = new List<NavModel>();
-        //    JObject res = new JObject();
-        //    ProcessJson jsonConvert = new ProcessJson();
-        //    // Tìm Menu tổng
-        //    var a = ;
-
-
-        //    // menu root
-        //    var callMenu = (from i in context.CNavigations
-        //                    where
-        //                    (
-        //                      i.IsPermission.ToUpper().Contains(PermissionName) && (string.IsNullOrEmpty(i.ParentGroup))
-        //                    )
-        //                    select i).ToList();
-
-        //    result = AutoMapperConfig.AutoMap<CNavigation, NavModel>(callMenu);
-
-        //    if (result.Count > 0)
-        //    {
-        //        foreach (var pair in result)
-        //        {
-        //            // menu cấp 1
-        //            var callSubMenu = context.CNavigations.Where(x => (!string.IsNullOrEmpty(x.ParentGroup) && pair.NavId.ToString().ToUpper().Equals(x.ParentGroup))).ToList();
-
-        //            pair.Children = AutoMapperConfig.AutoMap<CNavigation, NavModel>(callSubMenu);
-
-        //            if (pair.Children != null)
-        //            {
-        //                foreach (var childrenMenu in pair.Children)
-        //                {
-        //                    if (!String.IsNullOrEmpty(childrenMenu.ParentGroup))
-        //                    {
-        //                        // menu cấp 2
-        //                        var callChildrenMenu = context.CNavigations.Where(x => (!string.IsNullOrEmpty(x.ParentGroup) && childrenMenu.NavId.ToString().ToUpper().Equals(x.ParentGroup))).ToList();
-
-        //                        childrenMenu.Children = AutoMapperConfig.AutoMap<CNavigation, NavModel>(callChildrenMenu);
-        //                    }
-        //                }
-        //            }
-
-        //        }
-        //    }
-        //    return result;
-        //}
-
-        public List<NavModel> GetChildNav(string parentId, string IsPer)
+        public List<NavModel> GetMenu(string parentId, string IsPer )
         {
             AddonDBContext context = new AddonDBContext();
             var menuRootEntity = context.CNavigations.Where(x => (x.IsPermission.ToUpper().Contains(IsPer.ToUpper())) &&(string.IsNullOrEmpty(parentId) && string.IsNullOrEmpty(x.ParentGroup)) || (!string.IsNullOrEmpty(parentId) && !string.IsNullOrEmpty(x.ParentGroup) && x.ParentGroup.ToLower() == parentId.ToLower())).ToList();
             var menuRootModel = AutoMapperConfig.AutoMap<CNavigation, NavModel>(menuRootEntity);
             foreach (var navModel in menuRootModel)
             {
-                //xử lý đoạn này
-                var children = GetChildNav(navModel.NavId.ToString(), IsPer);
+                var children = GetMenu(navModel.NavId.ToString(), IsPer);
                 navModel.Children = children;
 
                 if (children!=null && children.Count() > 0)

@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace AddOn.Models.ResData
 {
+    public class LoginModel
+    {
+        public string UserRole { get; set; }
+        public string? Account { get; set; }
+    }
     public class GetDeposit
     {
         public string? Code { get; set; }
@@ -61,5 +66,9 @@ namespace AddOn.Models.ResData
         public _partner? Partner { get; set; }
         public _user? User { get; set; }
         public string? Token { get; set; }
+        public string? UserRole { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Account { get; set; }
+
     }
 }

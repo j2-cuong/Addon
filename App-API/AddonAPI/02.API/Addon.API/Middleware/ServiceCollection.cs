@@ -13,7 +13,7 @@ namespace Addon.API.Middleware
             services.AddScoped<ITourCategoryServices, TourCategoryServices>();
             services.AddScoped<ITourServices, TourServices>();
             services.AddScoped<ITourDetailServices, TourDetailServices>();
-            //services.AddScoped<ITourHandler, TourHandler>();
+            services.AddScoped<IWarnCategoryServices, WarnCategoryServices>();
         }
     }
 }

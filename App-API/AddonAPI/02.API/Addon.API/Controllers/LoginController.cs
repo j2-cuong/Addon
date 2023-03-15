@@ -1,12 +1,11 @@
-﻿using Addon.Core.Interfaces;
+﻿using Addon.Core.Authorize;
+using Addon.Core.Interfaces;
 using Addon.Core.Model;
 using AddOn.Models.Requests;
 using AddOn.Models.ResData;
 using AddOn.Models.Responses;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using static Addon.Core.PermissionMode;
 
 namespace Addon.API.Controllers
 {
@@ -47,7 +46,7 @@ namespace Addon.API.Controllers
         /// </remarks>
         [Route("LoginEco")]
         [HttpPost]
-        public async Task<LoginResponse<List<NavModel>>> LoginEco(LoginEcoRequest request)
+        public async Task<LoginResponse<List<ResToken>>> LoginEco(LoginEcoRequest request)
         {
             return await svc.LoginEcoSvc(request);
         }
@@ -143,6 +142,58 @@ namespace Addon.API.Controllers
         public async Task<CommonResponse<GetDeposit._data>> GetDepositByPartnerCode(GetDepositRequest request)
         {
             return await svc.GetDeposit(request);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parentId"></param>
+        /// <param name="IsPer"></param>
+        /// <returns></returns>
+        /// 
+
+
+        /// <summary>
+        /// GetMenu.
+        /// </summary>
+        /// <remarks>
+        /// Example: sử dụng Postman
+        /// 
+        /// METHOD : POST
+        /// 
+        /// I, Thẻ headers bao gồm : 
+        /// 
+        ///     "Authorization":"Bearer "+ Token lấy từ API login
+        /// 
+        /// II, Thẻ body - raw - đổi text thành Json
+        /// 
+        /// III, Json mẫu
+        /// 
+        ///     {
+        ///         "PartnerCode":"DEMO",
+        ///         "Username":"huynguyen",
+        ///         "Password":"Huy@@789##"
+        ///     }
+        ///
+        /// IV, Note
+        /// 
+        /// Lưu ý : 
+        /// 
+        ///     + parentId truyền giá trị = GetMenu
+        ///     
+        ///     + IsPer là giá trị UseRole khi login
+        /// 
+        /// </remarks>
+        [Route("GetMenu")]
+        [Authorize]
+        //[Authorize(Roles = "ADMIN")]
+        [HttpPost]
+        public List<NavModel> GetMenu()
+        {
+            string parentId = string.Empty;
+            string token = HttpContext.Request.Headers["Authorization"].ToString().Split(" ")[1];
+            LoginModels._data PartnerCode = Token.ValidateToken(token);
+            string IsPer = PartnerCode.User.UserRole.ToString();
+            return svc.GetMenu(parentId, IsPer);
         }
     }
 }

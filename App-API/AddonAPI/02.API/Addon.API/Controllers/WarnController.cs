@@ -1,5 +1,6 @@
 ﻿using Addon.API.Logic.TourCategory;
 using Addon.Core.Entities;
+using AddOn.Models;
 using AddOn.Models.Requests;
 using AddOn.Models.Responses;
 using Microsoft.AspNetCore.Authorization;
@@ -7,20 +8,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Addon.API.Controllers
 {
-    /// <summary>
-    /// 
-    /// </summary>
     [Route("api/[controller]")]
     [Authorize]
     [ApiController]
-    public class TourCategoryController : ControllerBase
+    public class WarnController : ControllerBase
     {
-        ITourCategoryServices svc;
+        IWarnCategoryServices svc;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="_svc"></param>
-        public TourCategoryController(ITourCategoryServices _svc)
+        public WarnController(IWarnCategoryServices _svc)
         {
             this.svc = _svc;
         }
@@ -41,7 +39,7 @@ namespace Addon.API.Controllers
         /// III, Json mẫu
         /// 
         ///     {
-        ///         "CategoryId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"
+        ///         "WarnId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"
         ///     }
         ///
         /// IV, Note
@@ -49,11 +47,10 @@ namespace Addon.API.Controllers
         /// 
         /// </remarks>
         [HttpPost]
-        //[Authorize(Roles = "ADMIN")]
         [Authorize]
 
         [Route("SearchById")]
-        public CommonResponse<CTourCategory> SearchById(GetTourCategoryByIdRequest request)
+        public CommonResponse<IWarn> SearchById(Warn request)
         {
             return svc.SearchById(request);
         }
@@ -84,7 +81,7 @@ namespace Addon.API.Controllers
         [HttpPost]
         [Authorize]
         [Route("SearchByName")]
-        public async Task<CommonResponse<List<CTourCategory>>> SearchByName(GetTourCategoryByNameRequest request)
+        public async Task<CommonResponse<List<IWarn>>> SearchByName(WarnModel request)
         {
             return await svc.SearchByName(request);
         }
@@ -105,19 +102,18 @@ namespace Addon.API.Controllers
         /// III, Json mẫu
         /// 
         ///     {
-        ///         "categoryId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        ///         "categoryCode": "string",
-        ///         "categoryName": "string"
+        ///         "WarnTitle": "string",
+        ///         "WarnContent": "string"
         ///     }
         ///
         /// IV, Note
         /// 
         /// 
         /// </remarks>
-    [HttpPost]
+        [HttpPost]
         [Authorize]
         [Route("Create")]
-        public CommonResponse<CTourCategory> Create(CTourCategory request)
+        public CommonResponse<IWarn> Create(IWarn request)
         {
             return svc.Create(request);
         }
@@ -149,7 +145,7 @@ namespace Addon.API.Controllers
         [HttpPost]
         [Authorize]
         [Route("Update")]
-        public CommonResponse<CTourCategory> Update(CTourCategory request)
+        public CommonResponse<IWarn> Update(IWarn request)
         {
             return svc.Update(request);
         }
@@ -180,7 +176,7 @@ namespace Addon.API.Controllers
         [HttpPost]
         [Authorize]
         [Route("Delete")]
-        public CommonResponse Delete(GetTourCategoryByIdRequest request)
+        public CommonResponse Delete(Warn request)
         {
             return svc.Delete(request);
         }

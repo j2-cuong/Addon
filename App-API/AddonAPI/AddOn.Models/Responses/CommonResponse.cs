@@ -27,14 +27,17 @@ namespace AddOn.Models.Responses
                 Data = Data
             };
         }
-        public static LoginResponse<T> SuccessLogin<T>(T data,string token)
+        public static LoginResponse<T> SuccessLogin<T>(T data,string token, string userRole, string DisplayName , string Account)
         {
             return new LoginResponse<T>()
             {
                 code = (int)ErrorCode.Success,
                 message = "Thành công.",
                 Token = token,
-                Data = data
+                Data = data,
+                UserRole = userRole,
+                DisplayName = DisplayName,
+                Account = Account
             };
         }
         public static CommonResponse MissingError(string extend = "")
@@ -144,6 +147,9 @@ namespace AddOn.Models.Responses
         public string message { get; set; }
         public string Token { get; set; }
         public T Data { get; set; }
+        public string UserRole { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Account { get; set; }
     }
 
 
@@ -174,5 +180,6 @@ namespace AddOn.Models.Responses
             Data = data;
             Token = token;
         }
+       
     }
 }
